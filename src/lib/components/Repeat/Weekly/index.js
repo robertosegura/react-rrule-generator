@@ -1,8 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { toPairs } from 'lodash';
+import TextField from '@material-ui/core/TextField';
+import Checkbox from '@material-ui/core/Checkbox';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import FormControl from '@material-ui/core/FormControl';
+import FormLabel from '@material-ui/core/FormLabel';
+import FormGroup from '@material-ui/core/FormGroup';
+
 import numericalFieldHandler from '../../../utils/numericalFieldHandler';
-import translateLabel from '../../../utils/translateLabel';
+// import translateLabel from '../../../utils/translateLabel';
 
 const RepeatWeekly = ({
   id,
@@ -12,7 +19,7 @@ const RepeatWeekly = ({
     options,
   },
   handleChange,
-  translations
+  // translations,
 }) => {
   let daysArray = toPairs(days);
   if (options.weekStartsOnSunday) {
@@ -23,9 +30,9 @@ const RepeatWeekly = ({
     <div className="px-3">
       <div className="form-group row d-flex align-items-sm-center">
         <div className="col-sm-1 offset-sm-2">
-          {translateLabel(translations, 'repeat.weekly.every')}
+          every
         </div>
-        <div className="col-sm-3">
+        {/* <div className="col-sm-3">
           <input
             id={`${id}-interval`}
             name="repeat.weekly.interval"
@@ -34,13 +41,23 @@ const RepeatWeekly = ({
             value={interval}
             onChange={numericalFieldHandler(handleChange)}
           />
-        </div>
+        </div> */}
+        <TextField
+          name="repeat.weekly.interval"
+          required
+          type="number"
+          value={interval}
+          label="Every"
+          // id="zipcode"
+          inputProps={{ min: 1 }}
+          onChange={numericalFieldHandler(handleChange)}
+        />
         <div className="col-sm-1">
-          {translateLabel(translations, 'repeat.weekly.weeks')}
+          weeks
         </div>
       </div>
 
-      <div className="form-group row">
+      {/* <div className="form-group row">
         <div className="btn-group btn-group-toggle offset-sm-2">
           {daysArray.map(([dayName, isDayActive]) => (
             <label
@@ -71,7 +88,59 @@ const RepeatWeekly = ({
             </label>))
           }
         </div>
-      </div>
+      </div> */}
+      <FormGroup row>
+        {daysArray.map(([dayName, isDayActive]) => (
+          <FormControlLabel
+            key={dayName}
+            control={<Checkbox
+              name={`repeat.weekly.days[${dayName}]`}
+              checked={isDayActive}
+              color="primary"
+              onChange={(event) => {
+                  const editedEvent = {
+                    ...event,
+                    target: {
+                      ...event.target,
+                      value: !isDayActive,
+                      name: event.target.name,
+                    },
+                  };
+
+                  handleChange(editedEvent);
+                }}
+            />}
+            label={dayName.charAt(0).toUpperCase() + dayName.slice(1)}
+          />
+          // <label
+          //   htmlFor={`${id}-${dayName}`}
+          //   key={dayName}
+          //   className={`btn btn-primary ${isDayActive ? 'active' : ''}`}
+          // >
+          //   <input
+          //     type="checkbox"
+          //     id={`${id}-${dayName}`}
+          //     name={`repeat.weekly.days[${dayName}]`}
+          //     className="form-control"
+          //     checked={isDayActive}
+          //     onChange={(event) => {
+          //         const editedEvent = {
+          //           ...event,
+          //           target: {
+          //             ...event.target,
+          //             value: !isDayActive,
+          //             name: event.target.name,
+          //           },
+          //         };
+
+          //         handleChange(editedEvent);
+          //       }}
+          //   />
+          //   {translateLabel(translations, `days_short.${dayName.toLowerCase()}`)}
+          // </label>
+          ))
+          }
+      </FormGroup>
     </div>
   );
 };
@@ -94,7 +163,7 @@ RepeatWeekly.propTypes = {
     }).isRequired,
   }).isRequired,
   handleChange: PropTypes.func.isRequired,
-  translations: PropTypes.oneOfType([PropTypes.object, PropTypes.func]).isRequired,
+  // translations: PropTypes.oneOfType([PropTypes.object, PropTypes.func]).isRequired,
 };
 
 export default RepeatWeekly;

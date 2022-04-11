@@ -1,11 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import InputLabel from '@material-ui/core/InputLabel';
+import MenuItem from '@material-ui/core/MenuItem';
+import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
 import RepeatYearly from './Yearly/index';
 import RepeatMonthly from './Monthly/index';
 import RepeatWeekly from './Weekly/index';
 import RepeatDaily from './Daily/index';
 import RepeatHourly from './Hourly/index';
-import translateLabel from '../../utils/translateLabel';
+// import translateLabel from '../../utils/translateLabel';
 
 const Repeat = ({
   id,
@@ -19,7 +23,7 @@ const Repeat = ({
     options,
   },
   handleChange,
-  translations
+  // translations
 }) => {
   const isOptionAvailable = option => !options.frequency || options.frequency.indexOf(option) !== -1;
   const isOptionSelected = option => frequency === option;
@@ -33,11 +37,11 @@ const Repeat = ({
             className="col-form-label"
           >
             <strong>
-              {translateLabel(translations, 'repeat.label')}
+              Repeat
             </strong>
           </label>
         </div>
-        <div className="col-sm-6">
+        {/* <div className="col-sm-6">
           <select
             name="repeat.frequency"
             id={`${id}-frequency`}
@@ -51,7 +55,23 @@ const Repeat = ({
             {isOptionAvailable('Daily') && <option value="Daily">{translateLabel(translations, 'repeat.daily.label')}</option>}
             {isOptionAvailable('Hourly') && <option value="Hourly">{translateLabel(translations, 'repeat.hourly.label')}</option>}
           </select>
-        </div>
+        </div> */}
+        <FormControl>
+          <InputLabel id="frequency-select-label">Frequency</InputLabel>
+          <Select
+            labelId="frequency-select-label"
+            id="frequency-select"
+            name="repeat.frequency"
+            value={frequency}
+            onChange={handleChange}
+          >
+            {isOptionAvailable('Yearly') && <MenuItem value="Yearly">Yearly</MenuItem>}
+            {isOptionAvailable('Monthly') && <MenuItem value="Monthly">Monthly</MenuItem>}
+            {isOptionAvailable('Weekly') && <MenuItem value="Weekly">Weekly</MenuItem>}
+            {isOptionAvailable('Daily') && <MenuItem value="Daily">Daily</MenuItem>}
+            {isOptionAvailable('Hourly') && <MenuItem value="Hourly">Hourly</MenuItem>}
+          </Select>
+        </FormControl>
       </div>
 
       {
@@ -60,7 +80,7 @@ const Repeat = ({
           id={`${id}-yearly`}
           yearly={yearly}
           handleChange={handleChange}
-          translations={translations}
+          // translations={translations}
         />
       }
       {
@@ -69,7 +89,7 @@ const Repeat = ({
           id={`${id}-monthly`}
           monthly={monthly}
           handleChange={handleChange}
-          translations={translations}
+          // translations={translations}
         />
       }
       {
@@ -78,7 +98,7 @@ const Repeat = ({
           id={`${id}-weekly`}
           weekly={weekly}
           handleChange={handleChange}
-          translations={translations}
+          // translations={translations}
         />
       }
       {
@@ -87,7 +107,7 @@ const Repeat = ({
           id={`${id}-daily`}
           daily={daily}
           handleChange={handleChange}
-          translations={translations}
+          // translations={translations}
         />
       }
       {
@@ -96,7 +116,7 @@ const Repeat = ({
           id={`${id}-hourly`}
           hourly={hourly}
           handleChange={handleChange}
-          translations={translations}
+          // translations={translations}
         />
       }
 
@@ -120,7 +140,7 @@ Repeat.propTypes = {
     }).isRequired,
   }).isRequired,
   handleChange: PropTypes.func.isRequired,
-  translations: PropTypes.oneOfType([PropTypes.object, PropTypes.func]).isRequired,
+  // translations: PropTypes.oneOfType([PropTypes.object, PropTypes.func]).isRequired,
 };
 
 export default Repeat;

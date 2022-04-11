@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { cloneDeep, set } from 'lodash';
+import { Grid } from '@material-ui/core';
 
 import Start from './Start/index';
 import Repeat from './Repeat/index';
@@ -8,15 +9,14 @@ import End from './End/index';
 import computeRRuleToString from '../utils/computeRRule/toString/computeRRule';
 import computeRRuleFromString from '../utils/computeRRule/fromString/computeRRule';
 import configureInitialState from '../utils/configureInitialState';
-import translateLabel from '../utils/translateLabel';
-import translations from '../translations';
-import '../styles/index.css';
+// import translateLabel from '../utils/translateLabel';
+// import translations from '../translations';
+// import '../styles/index.css';
 
 class ReactRRuleGenerator extends PureComponent {
   // compute default view based on user's config
   state = configureInitialState(
     this.props.config,
-    this.props.calendarComponent,
     this.props.id,
   );
 
@@ -63,57 +63,56 @@ class ReactRRuleGenerator extends PureComponent {
     } = this.state;
 
     return (
-      <div>
+      <Grid container>
 
         {
           !options.hideError && error && (
-            <div className="alert alert-danger">
-              {translateLabel(this.props.translations, 'invalid_rrule', { value: error.value })}
-            </div>
+            <Grid>
+              <div>
+                Invalid Rule {error.value}
+              </div>
+            </Grid>
           )
         }
 
-        <div className="px-0 pt-3 border rounded">
-
+        <Grid>
           {
             !options.hideStart && (
-              <div>
+              <Grid>
                 <Start
                   id={`${id}-start`}
                   start={start}
                   handleChange={this.handleChange}
-                  translations={this.props.translations}
+                  // translations={this.props.translations}
                 />
-                <hr />
-              </div>
+              </Grid>
             )
           }
 
-          <div>
+          <Grid>
             <Repeat
               id={`${id}-repeat`}
               repeat={repeat}
               handleChange={this.handleChange}
-              translations={this.props.translations}
+              // translations={this.props.translations}
             />
-          </div>
+          </Grid>
 
           {
             !options.hideEnd && (
-              <div>
-                <hr />
+              <Grid>
                 <End
                   id={`${id}-end`}
                   end={end}
                   handleChange={this.handleChange}
-                  translations={this.props.translations}
+                  // translations={this.props.translations}
                 />
-              </div>
+              </Grid>
             )
           }
 
-        </div>
-      </div>
+        </Grid>
+      </Grid>
     );
   }
 }
@@ -132,16 +131,16 @@ ReactRRuleGenerator.propTypes = {
   }),
   value: PropTypes.string,
   onChange: PropTypes.func,
-  calendarComponent: PropTypes.oneOfType([PropTypes.element, PropTypes.func]),
-  translations: PropTypes.oneOfType([PropTypes.object, PropTypes.func]),
+  // calendarComponent: PropTypes.oneOfType([PropTypes.element, PropTypes.func]),
+  // translations: PropTypes.oneOfType([PropTypes.object, PropTypes.func]),
 };
 ReactRRuleGenerator.defaultProps = {
   id: null,
   value: '',
   config: {},
   onChange() {},
-  calendarComponent: null,
-  translations: translations.english,
+  // calendarComponent: null,
+  // translations: translations.english,
 };
 
 export default ReactRRuleGenerator;

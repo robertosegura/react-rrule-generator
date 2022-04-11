@@ -1,8 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Radio from '@material-ui/core/Radio';
+import RadioGroup from '@material-ui/core/RadioGroup';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import FormControl from '@material-ui/core/FormControl';
+import FormLabel from '@material-ui/core/FormLabel';
+import InputLabel from '@material-ui/core/InputLabel';
+import MenuItem from '@material-ui/core/MenuItem';
+import Select from '@material-ui/core/Select';
 
 import { MONTHS, DAYS } from '../../../constants/index';
-import translateLabel from '../../../utils/translateLabel';
+// import translateLabel from '../../../utils/translateLabel';
 
 const RepeatYearlyOnThe = ({
   id,
@@ -10,7 +18,7 @@ const RepeatYearlyOnThe = ({
   onThe,
   hasMoreModes,
   handleChange,
-  translations
+  // translations
 }) => {
   const isActive = mode === 'on the';
 
@@ -18,22 +26,30 @@ const RepeatYearlyOnThe = ({
     <div className={`form-group row d-flex align-items-sm-center ${!isActive && 'opacity-50'}`}>
       <div className="col-sm-1 offset-sm-2">
         {hasMoreModes && (
-          <input
-            id={id}
-            type="radio"
-            aria-label="Repeat yearly on the"
+          // <input
+          //   id={id}
+          //   type="radio"
+          //   aria-label="Repeat yearly on the"
+          //   name="repeat.yearly.mode"
+          //   checked={isActive}
+          //   value="on the"
+          //   onChange={handleChange}
+          // />
+          <FormControlLabel
             name="repeat.yearly.mode"
-            checked={isActive}
             value="on the"
+            control={<Radio color="primary" />}
+            label="on the"
+            checked={isActive}
             onChange={handleChange}
           />
         )}
       </div>
-      <div className="col-sm-1">
+      {/* <div className="col-sm-1">
         {translateLabel(translations, 'repeat.yearly.on_the')}
-      </div>
+      </div> */}
 
-      <div className="col-sm-2">
+      {/* <div className="col-sm-2">
         <select
           id={`${id}-which`}
           name="repeat.yearly.onThe.which"
@@ -49,9 +65,26 @@ const RepeatYearlyOnThe = ({
           <option value="Fourth">{translateLabel(translations, 'numerals.fourth')}</option>
           <option value="Last">{translateLabel(translations, 'numerals.last')}</option>
         </select>
-      </div>
+      </div> */}
+      <FormControl>
+        <InputLabel id="occurrence-select-label">Occurrence</InputLabel>
+        <Select
+          labelId="occurrence-select-label"
+          id="occurrence-select"
+          name="repeat.yearly.onThe.which"
+          value={onThe.which}
+          disabled={!isActive}
+          onChange={handleChange}
+        >
+          <MenuItem value="First">First</MenuItem>
+          <MenuItem value="Second">Second</MenuItem>
+          <MenuItem value="Third">Third</MenuItem>
+          <MenuItem value="Fourth">Fourth</MenuItem>
+          <MenuItem value="Last">Last</MenuItem>
+        </Select>
+      </FormControl>
 
-      <div className="col-sm-3">
+      {/* <div className="col-sm-3">
         <select
           id={`${id}-day`}
           name="repeat.yearly.onThe.day"
@@ -63,13 +96,27 @@ const RepeatYearlyOnThe = ({
         >
           {DAYS.map(day => <option key={day} value={day}>{translateLabel(translations, `days.${day.toLowerCase()}`)}</option>)}
         </select>
-      </div>
+      </div> */}
 
-      <div className="col-sm-1">
+      <FormControl>
+        <InputLabel id="day-select-label">Day</InputLabel>
+        <Select
+          labelId="day-select-label"
+          id="day-select"
+          name="repeat.yearly.onThe.day"
+          value={onThe.day}
+          disabled={!isActive}
+          onChange={handleChange}
+        >
+          {DAYS.map(day => <MenuItem key={day} value={day}>{day}</MenuItem>)}
+        </Select>
+      </FormControl>
+
+      {/* <div className="col-sm-1">
           {translateLabel(translations, 'repeat.yearly.of')}
-      </div>
+      </div> */}
 
-      <div className="col-sm-2">
+      {/* <div className="col-sm-2">
         <select
           id={`${id}-month`}
           name="repeat.yearly.onThe.month"
@@ -81,7 +128,20 @@ const RepeatYearlyOnThe = ({
         >
           {MONTHS.map(month => <option key={month} value={month}>{translateLabel(translations, `months.${month.toLowerCase()}`)}</option>)}
         </select>
-      </div>
+      </div> */}
+      <FormControl>
+        <InputLabel id="day-select-label">Month</InputLabel>
+        <Select
+          labelId="month-select-label"
+          id="month-select"
+          name="repeat.yearly.onThe.month"
+          value={onThe.month}
+          disabled={!isActive}
+          onChange={handleChange}
+        >
+          {MONTHS.map(month => <MenuItem key={month} value={month}>{month}</MenuItem>)}
+        </Select>
+      </FormControl>
 
     </div>
   );
@@ -96,7 +156,7 @@ RepeatYearlyOnThe.propTypes = {
   }).isRequired,
   hasMoreModes: PropTypes.bool.isRequired,
   handleChange: PropTypes.func.isRequired,
-  translations: PropTypes.oneOfType([PropTypes.object, PropTypes.func]).isRequired,
+  // translations: PropTypes.oneOfType([PropTypes.object, PropTypes.func]).isRequired,
 };
 
 export default RepeatYearlyOnThe;

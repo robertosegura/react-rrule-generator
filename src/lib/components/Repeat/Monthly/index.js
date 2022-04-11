@@ -1,9 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import TextField from '@material-ui/core/TextField';
 import RepeatMonthlyOn from './On';
 import RepeatMonthlyOnThe from './OnThe';
 import numericalFieldHandler from '../../../utils/numericalFieldHandler';
-import translateLabel from '../../../utils/translateLabel';
+// import translateLabel from '../../../utils/translateLabel';
 
 const RepeatMonthly = ({
   id,
@@ -15,7 +16,7 @@ const RepeatMonthly = ({
     options,
   },
   handleChange,
-  translations
+  // translations
 }) => {
   const isTheOnlyOneMode = option => options.modes === option;
   const isOptionAvailable = option => !options.modes || isTheOnlyOneMode(option);
@@ -24,9 +25,9 @@ const RepeatMonthly = ({
     <div>
       <div className="form-group row d-flex align-items-sm-center">
         <div className="col-sm-1 offset-sm-2">
-          {translateLabel(translations, 'repeat.monthly.every')}
+          every
         </div>
-        <div className="col-sm-3">
+        {/* <div className="col-sm-3">
           <input
             id={`${id}-interval`}
             name="repeat.monthly.interval"
@@ -35,9 +36,19 @@ const RepeatMonthly = ({
             value={interval}
             onChange={numericalFieldHandler(handleChange)}
           />
-        </div>
+        </div> */}
+        <TextField
+          name="repeat.monthly.interval"
+          required
+          type="number"
+          value={interval}
+          label="Every"
+          // id="zipcode"
+          inputProps={{ min: 1 }}
+          onChange={numericalFieldHandler(handleChange)}
+        />
         <div className="col-sm-1">
-          {translateLabel(translations, 'repeat.monthly.months')}
+          months
         </div>
       </div>
 
@@ -48,7 +59,7 @@ const RepeatMonthly = ({
           on={on}
           hasMoreModes={!isTheOnlyOneMode('on')}
           handleChange={handleChange}
-          translations={translations}
+          // translations={translations}
         />
       )}
       {isOptionAvailable('on the') && (
@@ -58,7 +69,7 @@ const RepeatMonthly = ({
           onThe={onThe}
           hasMoreModes={!isTheOnlyOneMode('on the')}
           handleChange={handleChange}
-          translations={translations}
+          // translations={translations}
         />
       )}
 
@@ -78,7 +89,7 @@ RepeatMonthly.propTypes = {
     }).isRequired,
   }).isRequired,
   handleChange: PropTypes.func.isRequired,
-  translations: PropTypes.oneOfType([PropTypes.object, PropTypes.func]).isRequired,
+  // translations: PropTypes.oneOfType([PropTypes.object, PropTypes.func]).isRequired,
 };
 
 export default RepeatMonthly;

@@ -1,9 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import FormControl from '@material-ui/core/FormControl';
+import FormLabel from '@material-ui/core/FormLabel';
+import InputLabel from '@material-ui/core/InputLabel';
+import MenuItem from '@material-ui/core/MenuItem';
+import Select from '@material-ui/core/Select';
 import EndAfter from './After';
 import EndOnDate from './OnDate';
 
-import translateLabel from '../../utils/translateLabel';
+// import translateLabel from '../../utils/translateLabel';
 
 const End = ({
   id,
@@ -14,7 +20,7 @@ const End = ({
     options,
   },
   handleChange,
-  translations
+  // translations
 }) => {
   const isOptionAvailable = option => !options.modes || options.modes.indexOf(option) !== -1;
   const isOptionSelected = option => mode === option;
@@ -28,11 +34,11 @@ const End = ({
             className="col-form-label"
           >
             <strong>
-              {translateLabel(translations, 'end.label')}
+              End Date
             </strong>
           </label>
         </div>
-        <div className="col-sm-3">
+        {/* <div className="col-sm-3">
           <select
             name="end.mode"
             id={id}
@@ -44,7 +50,22 @@ const End = ({
             {isOptionAvailable('After') && <option value="After">{translateLabel(translations, 'end.after')}</option>}
             {isOptionAvailable('On date') && <option value="On date">{translateLabel(translations, 'end.on_date')}</option>}
           </select>
-        </div>
+        </div> */}
+        <FormControl>
+          <InputLabel id="end-select-label">End</InputLabel>
+          <Select
+            labelId="end-select-label"
+            id="end-select"
+            name="end.mode"
+            value={mode}
+            // disabled={!isActive}
+            onChange={handleChange}
+          >
+            {isOptionAvailable('Never') && <MenuItem value="Never">Never</MenuItem>}
+            {isOptionAvailable('After') && <MenuItem value="After">After</MenuItem>}
+            {isOptionAvailable('On date') && <MenuItem value="On date">On Date</MenuItem>}
+          </Select>
+        </FormControl>
 
         {
           isOptionSelected('After') &&
@@ -52,7 +73,7 @@ const End = ({
             id={`${id}-after`}
             after={after}
             handleChange={handleChange}
-            translations={translations}
+            // translations={translations}
           />
         }
         {
@@ -61,7 +82,7 @@ const End = ({
             id={`${id}-onDate`}
             onDate={onDate}
             handleChange={handleChange}
-            translations={translations}
+            // translations={translations}
           />
         }
 
@@ -82,7 +103,7 @@ End.propTypes = {
     }).isRequired,
   }).isRequired,
   handleChange: PropTypes.func.isRequired,
-  translations: PropTypes.oneOfType([PropTypes.object, PropTypes.func]).isRequired,
+  // translations: PropTypes.oneOfType([PropTypes.object, PropTypes.func]).isRequired,
 };
 
 export default End;

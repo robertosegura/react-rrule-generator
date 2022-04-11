@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import StartOnDate from './OnDate';
 
-import translateLabel from '../../utils/translateLabel';
+// import translateLabel from '../../utils/translateLabel';
 
 const Start = ({
   id,
@@ -10,7 +10,7 @@ const Start = ({
     onDate,
   },
   handleChange,
-  translations
+  // translations,
 }) => (
   <div className="px-3">
     <div className="form-group row">
@@ -20,11 +20,11 @@ const Start = ({
           className="col-form-label"
         >
           <strong>
-            {translateLabel(translations, 'start.label')}
+            Start Date
           </strong>
         </label>
       </div>
-      <StartOnDate id={id} onDate={onDate} handleChange={handleChange} translations={translations} />
+      <StartOnDate id={id} onDate={onDate} handleChange={handleChange} />
     </div>
   </div>
 );
@@ -35,7 +35,7 @@ Start.propTypes = {
     onDate: PropTypes.object.isRequired,
   }).isRequired,
   handleChange: PropTypes.func.isRequired,
-  translations: PropTypes.oneOfType([PropTypes.object, PropTypes.func]).isRequired,
+  // translations: PropTypes.oneOfType([PropTypes.object, PropTypes.func]).isRequired,
 };
 
 export default Start;

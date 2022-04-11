@@ -1,7 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import TextField from '@material-ui/core/TextField';
+
 import numericalFieldHandler from '../../../utils/numericalFieldHandler';
-import translateLabel from '../../../utils/translateLabel';
+// import translateLabel from '../../../utils/translateLabel';
 
 const RepeatDaily = ({
   id,
@@ -9,13 +11,13 @@ const RepeatDaily = ({
     interval,
   },
   handleChange,
-  translations
+  // translations
 }) => (
   <div className="form-group row d-flex align-items-sm-center">
     <div className="col-sm-1 offset-sm-2">
-      {translateLabel(translations, 'repeat.daily.every')}
+      every
     </div>
-    <div className="col-sm-2">
+    {/* <div className="col-sm-2">
       <input
         id={`${id}-interval`}
         name="repeat.daily.interval"
@@ -24,10 +26,17 @@ const RepeatDaily = ({
         value={interval}
         onChange={numericalFieldHandler(handleChange)}
       />
-    </div>
-    <div className="col-sm-1">
-      {translateLabel(translations, 'repeat.daily.days')}
-    </div>
+    </div> */}
+    <TextField
+      name="repeat.daily.interval"
+      required
+      type="number"
+      value={interval}
+      label="Days"
+      // id="zipcode"
+      inputProps={{ min: 1 }}
+      onChange={numericalFieldHandler(handleChange)}
+    />
 
   </div>
 );
@@ -37,7 +46,7 @@ RepeatDaily.propTypes = {
     interval: PropTypes.number.isRequired,
   }).isRequired,
   handleChange: PropTypes.func.isRequired,
-  translations: PropTypes.oneOfType([PropTypes.object, PropTypes.func]).isRequired,
+  // translations: PropTypes.oneOfType([PropTypes.object, PropTypes.func]).isRequired,
 };
 
 export default RepeatDaily;

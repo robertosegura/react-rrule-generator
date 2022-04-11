@@ -1,8 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Radio from '@material-ui/core/Radio';
+import RadioGroup from '@material-ui/core/RadioGroup';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import FormControl from '@material-ui/core/FormControl';
+import FormLabel from '@material-ui/core/FormLabel';
+import InputLabel from '@material-ui/core/InputLabel';
+import MenuItem from '@material-ui/core/MenuItem';
+import Select from '@material-ui/core/Select';
 
 import { DAYS } from '../../../constants/index';
-import translateLabel from '../../../utils/translateLabel';
+// import translateLabel from '../../../utils/translateLabel';
 
 const RepeatMonthlyOnThe = ({
   id,
@@ -10,7 +18,7 @@ const RepeatMonthlyOnThe = ({
   onThe,
   hasMoreModes,
   handleChange,
-  translations
+  // translations
 }) => {
   const isActive = mode === 'on the';
 
@@ -18,22 +26,30 @@ const RepeatMonthlyOnThe = ({
     <div className={`form-group row d-flex align-items-sm-center ${!isActive && 'opacity-50'}`}>
       <div className="col-sm-1 offset-sm-2">
         {hasMoreModes && (
-          <input
-            id={id}
-            type="radio"
+          // <input
+          //   id={id}
+          //   type="radio"
+          //   name="repeat.monthly.mode"
+          //   aria-label="Repeat monthly on the"
+          //   value="on the"
+          //   checked={isActive}
+          //   onChange={handleChange}
+          // />
+          <FormControlLabel
             name="repeat.monthly.mode"
-            aria-label="Repeat monthly on the"
             value="on the"
+            control={<Radio color="primary" />}
+            label="on the"
             checked={isActive}
             onChange={handleChange}
           />
         )}
       </div>
-      <div className="col-sm-1">
+      {/* <div className="col-sm-1">
         {translateLabel(translations, 'repeat.monthly.on_the')}
-      </div>
+      </div> */}
 
-      <div className="col-sm-2">
+      {/* <div className="col-sm-2">
         <select
           id={`${id}-which`}
           name="repeat.monthly.onThe.which"
@@ -49,9 +65,27 @@ const RepeatMonthlyOnThe = ({
           <option value="Fourth">{translateLabel(translations, 'numerals.fourth')}</option>
           <option value="Last">{translateLabel(translations, 'numerals.last')}</option>
         </select>
-      </div>
+      </div> */}
 
-      <div className="col-sm-3">
+      <FormControl>
+        <InputLabel id="repeat-monthly-occurrence-select-label">Occurrence</InputLabel>
+        <Select
+          labelId="repeat-monthly-occurrence-select-label"
+          id="repeat-monthly-occurrence-select"
+          name="repeat.monthly.onThe.which"
+          value={onThe.which}
+          disabled={!isActive}
+          onChange={handleChange}
+        >
+          <MenuItem value="First">First</MenuItem>
+          <MenuItem value="Second">Second</MenuItem>
+          <MenuItem value="Third">Third</MenuItem>
+          <MenuItem value="Fourth">Fourth</MenuItem>
+          <MenuItem value="Last">Last</MenuItem>
+        </Select>
+      </FormControl>
+
+      {/* <div className="col-sm-3">
         <select
           id={`${id}-day`}
           name="repeat.monthly.onThe.day"
@@ -63,7 +97,21 @@ const RepeatMonthlyOnThe = ({
         >
           {DAYS.map(day => <option key={day} value={day}>{translateLabel(translations, `days.${day.toLowerCase()}`)}</option>)}
         </select>
-      </div>
+      </div> */}
+
+      <FormControl>
+        <InputLabel id="repeat-monthly-day-select-label">Day</InputLabel>
+        <Select
+          labelId="repeat-monthly-day-select-label"
+          id="repeat-monthly-day-select"
+          name="repeat.monthly.onThe.day"
+          value={onThe.day}
+          disabled={!isActive}
+          onChange={handleChange}
+        >
+          {DAYS.map(day => <MenuItem key={day} value={day}>{day}</MenuItem>)}
+        </Select>
+      </FormControl>
 
     </div>
   );
@@ -77,7 +125,7 @@ RepeatMonthlyOnThe.propTypes = {
   }).isRequired,
   hasMoreModes: PropTypes.bool.isRequired,
   handleChange: PropTypes.func.isRequired,
-  translations: PropTypes.oneOfType([PropTypes.object, PropTypes.func]).isRequired,
+  // translations: PropTypes.oneOfType([PropTypes.object, PropTypes.func]).isRequired,
 };
 
 export default RepeatMonthlyOnThe;
