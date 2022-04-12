@@ -1,23 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
-// import DateTime from 'react-datetime';
 import DateFnsUtils from '@date-io/date-fns';
 import { KeyboardDatePicker, MuiPickersUtilsProvider } from '@material-ui/pickers';
 import 'moment/min/locales';
-
 import { DATE_TIME_FORMAT } from '../../constants/index';
-// import translateLabel from '../../utils/translateLabel';
 
 const EndOnDate = ({
   id,
   onDate: {
     date,
-    options,
   },
   handleChange,
-  // translations
-}) => {
+}) =>
   // const CustomCalendar = options.calendarComponent;
 
   // const locale = options.weekStartsOnSunday ? 'en-ca' : 'en-gb';
@@ -29,10 +24,10 @@ const EndOnDate = ({
   //   readOnly: true,
   // };
 
-  return (
+  (
     <MuiPickersUtilsProvider utils={DateFnsUtils}>
       <KeyboardDatePicker
-        id="endDate"
+        id={`${id}-endDate`}
         value={date}
         disableToolbar
         autoOk
@@ -41,9 +36,7 @@ const EndOnDate = ({
         // format="MM/dd/yyyy"
         margin="normal"
         label="End Date"
-        // local={locale}
         onChange={(inputDate) => {
-          // console.log(inputDate);
           const editedEvent = {
             target: {
               value: moment(inputDate).format(DATE_TIME_FORMAT),
@@ -57,10 +50,9 @@ const EndOnDate = ({
         KeyboardButtonProps={{
           'aria-label': 'change date',
         }}
-        // disabled={activeDate}
       />
     </MuiPickersUtilsProvider>
-  );
+  )
 
 
   // return (
@@ -110,7 +102,7 @@ const EndOnDate = ({
   //     }
   //   </div>
   // );
-};
+;
 
 EndOnDate.propTypes = {
   id: PropTypes.string.isRequired,
@@ -122,7 +114,6 @@ EndOnDate.propTypes = {
     }).isRequired,
   }).isRequired,
   handleChange: PropTypes.func.isRequired,
-  // translations: PropTypes.oneOfType([PropTypes.object, PropTypes.func]).isRequired,
 };
 
 export default EndOnDate;

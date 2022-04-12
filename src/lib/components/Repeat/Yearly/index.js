@@ -12,7 +12,6 @@ const RepeatYearly = ({
     options,
   },
   handleChange,
-  // translations
 }) => {
   const isTheOnlyOneMode = option => options.modes === option;
   const isOptionAvailable = option => !options.modes || isTheOnlyOneMode(option);
@@ -25,7 +24,6 @@ const RepeatYearly = ({
           on={on}
           hasMoreModes={!isTheOnlyOneMode('on')}
           handleChange={handleChange}
-          // translations={translations}
         />
       )}
       {isOptionAvailable('on the') && (
@@ -35,7 +33,6 @@ const RepeatYearly = ({
           onThe={onThe}
           hasMoreModes={!isTheOnlyOneMode('on the')}
           handleChange={handleChange}
-          // translations={translations}
         />
       )}
     </div>
@@ -52,7 +49,6 @@ RepeatYearly.propTypes = {
     }).isRequired,
   }).isRequired,
   handleChange: PropTypes.func.isRequired,
-  // translations: PropTypes.oneOfType([PropTypes.object, PropTypes.func]).isRequired,
 };
 
 export default RepeatYearly;

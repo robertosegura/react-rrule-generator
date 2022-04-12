@@ -4,7 +4,6 @@ import TextField from '@material-ui/core/TextField';
 import RepeatMonthlyOn from './On';
 import RepeatMonthlyOnThe from './OnThe';
 import numericalFieldHandler from '../../../utils/numericalFieldHandler';
-// import translateLabel from '../../../utils/translateLabel';
 
 const RepeatMonthly = ({
   id,
@@ -16,7 +15,6 @@ const RepeatMonthly = ({
     options,
   },
   handleChange,
-  // translations
 }) => {
   const isTheOnlyOneMode = option => options.modes === option;
   const isOptionAvailable = option => !options.modes || isTheOnlyOneMode(option);
@@ -27,23 +25,13 @@ const RepeatMonthly = ({
         <div className="col-sm-1 offset-sm-2">
           every
         </div>
-        {/* <div className="col-sm-3">
-          <input
-            id={`${id}-interval`}
-            name="repeat.monthly.interval"
-            aria-label="Repeat monthly interval"
-            className="form-control"
-            value={interval}
-            onChange={numericalFieldHandler(handleChange)}
-          />
-        </div> */}
         <TextField
+          id={`${id}-interval`}
           name="repeat.monthly.interval"
           required
           type="number"
           value={interval}
           label="Every"
-          // id="zipcode"
           inputProps={{ min: 1 }}
           onChange={numericalFieldHandler(handleChange)}
         />
@@ -59,7 +47,6 @@ const RepeatMonthly = ({
           on={on}
           hasMoreModes={!isTheOnlyOneMode('on')}
           handleChange={handleChange}
-          // translations={translations}
         />
       )}
       {isOptionAvailable('on the') && (
@@ -69,7 +56,6 @@ const RepeatMonthly = ({
           onThe={onThe}
           hasMoreModes={!isTheOnlyOneMode('on the')}
           handleChange={handleChange}
-          // translations={translations}
         />
       )}
 
@@ -89,7 +75,6 @@ RepeatMonthly.propTypes = {
     }).isRequired,
   }).isRequired,
   handleChange: PropTypes.func.isRequired,
-  // translations: PropTypes.oneOfType([PropTypes.object, PropTypes.func]).isRequired,
 };
 
 export default RepeatMonthly;

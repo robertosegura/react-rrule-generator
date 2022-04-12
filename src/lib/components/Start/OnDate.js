@@ -1,46 +1,31 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
-// import DateTime from 'react-datetime';
 import 'moment/min/locales';
 import DateFnsUtils from '@date-io/date-fns';
 import { KeyboardDatePicker, MuiPickersUtilsProvider } from '@material-ui/pickers';
 
 import { DATE_TIME_FORMAT } from '../../constants/index';
-// import translateLabel from '../../utils/translateLabel';
 
 const StartOnDate = ({
   id,
   onDate: {
     date,
-    // options,
   },
   handleChange,
-  // translations,
-}) => {
-  // const CustomCalendar = options.calendarComponent;
-  // const locale = options.weekStartsOnSunday ? 'en-ca' : 'en-gb';
-  // const calendarAttributes = {
-  //   'aria-label': translateLabel(translations, 'start.tooltip'),
-  //   value: date,
-  //   dateFormat: DATE_TIME_FORMAT,
-  //   locale,
-  //   readOnly: true,
-  // };
-
-  return (
-    <MuiPickersUtilsProvider utils={DateFnsUtils}>
-      <KeyboardDatePicker
-        id="startDate"
-        value={date}
-        disableToolbar
-        autoOk
-        required
-        variant="inline"
-        format="MM/dd/yyyy"
-        margin="normal"
-        label="Start Date"
-        onChange={(inputDate) => {
+}) => (
+  <MuiPickersUtilsProvider utils={DateFnsUtils}>
+    <KeyboardDatePicker
+      id={`${id}-startDate`}
+      value={date}
+      disableToolbar
+      autoOk
+      required
+      variant="inline"
+      format="MM/dd/yyyy"
+      margin="normal"
+      label="Start Date"
+      onChange={(inputDate) => {
           const editedEvent = {
             target: {
               value: moment(inputDate).format(DATE_TIME_FORMAT),
@@ -50,63 +35,12 @@ const StartOnDate = ({
 
           handleChange(editedEvent);
         }}
-        // minDate={activeDate ? null : new Date()}
-        KeyboardButtonProps={{
+      KeyboardButtonProps={{
           'aria-label': 'change date',
         }}
-        // disabled={activeDate}
-      />
-    </MuiPickersUtilsProvider>
-  );
-
-  // return (
-  //   <div className="col-6 col-sm-3">
-  //     {
-  //       CustomCalendar
-  //         ? <CustomCalendar
-  //             key={`${id}-calendar`}
-  //             {...calendarAttributes}
-  //             onChange={(event) => {
-  //             const editedEvent = {
-  //               target: {
-  //                 value: event.target.value,
-  //                 name: 'start.onDate.date',
-  //               },
-  //             };
-
-  //             handleChange(editedEvent);
-  //           }}
-  //         />
-  //         : <DateTime
-  //             {...calendarAttributes}
-  //             inputProps={
-  //             {
-  //               id: `${id}-datetime`,
-  //               name: 'start.onDate.date',
-  //               readOnly: true,
-  //             }
-  //           }
-  //             locale={translateLabel(translations, 'locale')}
-  //             timeFormat={false}
-  //             viewMode="days"
-  //             closeOnSelect
-  //             closeOnTab
-  //             required
-  //             onChange={(inputDate) => {
-  //             const editedEvent = {
-  //               target: {
-  //                 value: moment(inputDate).format(DATE_TIME_FORMAT),
-  //                 name: 'start.onDate.date',
-  //               },
-  //             };
-
-  //             handleChange(editedEvent);
-  //           }}
-  //         />
-  //     }
-  //   </div>
-  // );
-};
+    />
+  </MuiPickersUtilsProvider>
+);
 
 StartOnDate.propTypes = {
   id: PropTypes.string.isRequired,
@@ -118,7 +52,6 @@ StartOnDate.propTypes = {
     }).isRequired,
   }).isRequired,
   handleChange: PropTypes.func.isRequired,
-  // translations: PropTypes.oneOfType([PropTypes.object, PropTypes.func]).isRequired,
 };
 
 export default StartOnDate;

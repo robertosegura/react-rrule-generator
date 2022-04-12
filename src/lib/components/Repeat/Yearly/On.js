@@ -3,17 +3,13 @@ import PropTypes from 'prop-types';
 import moment from 'moment';
 import { range } from 'lodash';
 import Radio from '@material-ui/core/Radio';
-import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
-import FormLabel from '@material-ui/core/FormLabel';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
-
 import numericalFieldHandler from '../../../utils/numericalFieldHandler';
 import { MONTHS } from '../../../constants/index';
-// import translateLabel from '../../../utils/translateLabel';
 
 const RepeatYearlyOn = ({
   id,
@@ -21,7 +17,6 @@ const RepeatYearlyOn = ({
   on,
   hasMoreModes,
   handleChange,
-  // translations,
 }) => {
   const daysInMonth = moment(on.month, 'MMM').daysInMonth();
   const isActive = mode === 'on';
@@ -31,16 +26,8 @@ const RepeatYearlyOn = ({
       <div className="col-sm-1 offset-sm-2">
 
         {hasMoreModes && (
-          // <input
-          //   id={id}
-          //   type="radio"
-          //   name="repeat.yearly.mode"
-          //   aria-label="Repeat yearly on"
-          //   value="on"
-          //   checked={isActive}
-          //   onChange={handleChange}
-          // />
           <FormControlLabel
+            id={id}
             name="repeat.yearly.mode"
             value="on"
             control={<Radio color="primary" />}
@@ -50,30 +37,12 @@ const RepeatYearlyOn = ({
           />
         )}
       </div>
-
-      {/* <div className="col-sm-1">
-        {translateLabel(translations, 'repeat.yearly.on')}
-      </div> */}
-
-      {/* <div className="col-sm-2">
-        <select
-          id={`${id}-month`}
-          name="repeat.yearly.on.month"
-          aria-label="Repeat yearly on month"
-          className="form-control"
-          value={on.month}
-          disabled={!isActive}
-          onChange={handleChange}
-        >
-          {MONTHS.map(month => <option key={month} value={month}>{translateLabel(translations, `months.${month.toLowerCase()}`)}</option>)}
-        </select>
-      </div> */}
-
+  
       <FormControl>
-        <InputLabel id="month-select-label">Month</InputLabel>
+        <InputLabel id={`${id}-month-label`}>Month</InputLabel>
         <Select
-          labelId="month-select-label"
-          id="month-select"
+          id={`${id}-month`}
+          labelId={`${id}-month-label`}
           name="repeat.yearly.on.month"
           value={on.month}
           disabled={!isActive}
@@ -84,10 +53,10 @@ const RepeatYearlyOn = ({
       </FormControl>
 
       <FormControl>
-        <InputLabel id="day-select-label">Day</InputLabel>
+        <InputLabel id={`${id}-day-label`}>Day</InputLabel>
         <Select
-          labelId="day-select-label"
-          id="day-select"
+          labelId={`${id}-day-label`}
+          id={`${id}-day`}
           name="repeat.yearly.on.day"
           value={on.day}
           disabled={!isActive}
@@ -98,22 +67,7 @@ const RepeatYearlyOn = ({
           ))}
         </Select>
       </FormControl>
-
-      {/* <div className="col-sm-2">
-        <select
-          id={`${id}-day`}
-          name="repeat.yearly.on.day"
-          aria-label="Repeat yearly on a day"
-          className="form-control"
-          value={on.day}
-          disabled={!isActive}
-          onChange={numericalFieldHandler(handleChange)}
-        >
-          {range(0, daysInMonth).map(i => (
-            <option key={i} value={i + 1}>{i + 1}</option>
-          ))}
-        </select>
-      </div> */}
+  
     </div>
   );
 };
@@ -126,7 +80,6 @@ RepeatYearlyOn.propTypes = {
   }).isRequired,
   hasMoreModes: PropTypes.bool.isRequired,
   handleChange: PropTypes.func.isRequired,
-  // translations: PropTypes.oneOfType([PropTypes.object, PropTypes.func]).isRequired,
 };
 
 export default RepeatYearlyOn;

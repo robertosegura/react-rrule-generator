@@ -1,15 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
-import FormLabel from '@material-ui/core/FormLabel';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
 import EndAfter from './After';
 import EndOnDate from './OnDate';
-
-// import translateLabel from '../../utils/translateLabel';
 
 const End = ({
   id,
@@ -20,7 +16,6 @@ const End = ({
     options,
   },
   handleChange,
-  // translations
 }) => {
   const isOptionAvailable = option => !options.modes || options.modes.indexOf(option) !== -1;
   const isOptionSelected = option => mode === option;
@@ -38,27 +33,14 @@ const End = ({
             </strong>
           </label>
         </div>
-        {/* <div className="col-sm-3">
-          <select
-            name="end.mode"
-            id={id}
-            className="form-control"
-            value={mode}
-            onChange={handleChange}
-          >
-            {isOptionAvailable('Never') && <option value="Never">{translateLabel(translations, 'end.never')}</option>}
-            {isOptionAvailable('After') && <option value="After">{translateLabel(translations, 'end.after')}</option>}
-            {isOptionAvailable('On date') && <option value="On date">{translateLabel(translations, 'end.on_date')}</option>}
-          </select>
-        </div> */}
+
         <FormControl>
-          <InputLabel id="end-select-label">End</InputLabel>
+          <InputLabel id={`${id}-label`}>End</InputLabel>
           <Select
-            labelId="end-select-label"
-            id="end-select"
+            id={id}
+            labelId={`${id}-label`}
             name="end.mode"
             value={mode}
-            // disabled={!isActive}
             onChange={handleChange}
           >
             {isOptionAvailable('Never') && <MenuItem value="Never">Never</MenuItem>}
@@ -73,7 +55,6 @@ const End = ({
             id={`${id}-after`}
             after={after}
             handleChange={handleChange}
-            // translations={translations}
           />
         }
         {
@@ -82,10 +63,8 @@ const End = ({
             id={`${id}-onDate`}
             onDate={onDate}
             handleChange={handleChange}
-            // translations={translations}
           />
         }
-
       </div>
     </div>
   );
@@ -103,7 +82,6 @@ End.propTypes = {
     }).isRequired,
   }).isRequired,
   handleChange: PropTypes.func.isRequired,
-  // translations: PropTypes.oneOfType([PropTypes.object, PropTypes.func]).isRequired,
 };
 
 export default End;

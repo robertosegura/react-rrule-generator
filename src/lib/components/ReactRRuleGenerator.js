@@ -9,9 +9,6 @@ import End from './End/index';
 import computeRRuleToString from '../utils/computeRRule/toString/computeRRule';
 import computeRRuleFromString from '../utils/computeRRule/fromString/computeRRule';
 import configureInitialState from '../utils/configureInitialState';
-// import translateLabel from '../utils/translateLabel';
-// import translations from '../translations';
-// import '../styles/index.css';
 
 class ReactRRuleGenerator extends PureComponent {
   // compute default view based on user's config
@@ -83,7 +80,6 @@ class ReactRRuleGenerator extends PureComponent {
                   id={`${id}-start`}
                   start={start}
                   handleChange={this.handleChange}
-                  // translations={this.props.translations}
                 />
               </Grid>
             )
@@ -94,7 +90,6 @@ class ReactRRuleGenerator extends PureComponent {
               id={`${id}-repeat`}
               repeat={repeat}
               handleChange={this.handleChange}
-              // translations={this.props.translations}
             />
           </Grid>
 
@@ -105,7 +100,6 @@ class ReactRRuleGenerator extends PureComponent {
                   id={`${id}-end`}
                   end={end}
                   handleChange={this.handleChange}
-                  // translations={this.props.translations}
                 />
               </Grid>
             )
@@ -131,16 +125,13 @@ ReactRRuleGenerator.propTypes = {
   }),
   value: PropTypes.string,
   onChange: PropTypes.func,
-  // calendarComponent: PropTypes.oneOfType([PropTypes.element, PropTypes.func]),
-  // translations: PropTypes.oneOfType([PropTypes.object, PropTypes.func]),
 };
+
 ReactRRuleGenerator.defaultProps = {
   id: null,
   value: '',
   config: {},
   onChange() {},
-  // calendarComponent: null,
-  // translations: translations.english,
 };
 
 export default ReactRRuleGenerator;
