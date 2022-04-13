@@ -1,5 +1,5 @@
 {
-  "name": "rrule-generator",
+  "name": "react-rrule-generator",
   "version": "1.0.0",
   "license": "MIT",
   "main": "build/index.js",
