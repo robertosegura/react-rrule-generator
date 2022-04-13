@@ -2,13 +2,17 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { cloneDeep, set } from 'lodash';
 import { Grid } from '@material-ui/core';
-
+import { StylesProvider, createGenerateClassName } from '@material-ui/core/styles';
 import Start from './Start/index';
 import Repeat from './Repeat/index';
 import End from './End/index';
 import computeRRuleToString from '../utils/computeRRule/toString/computeRRule';
 import computeRRuleFromString from '../utils/computeRRule/fromString/computeRRule';
 import configureInitialState from '../utils/configureInitialState';
+
+const generateClassName = createGenerateClassName({
+  productionPrefix: 'rrule',
+});
 
 class ReactRRuleGenerator extends PureComponent {
   // compute default view based on user's config
@@ -60,8 +64,9 @@ class ReactRRuleGenerator extends PureComponent {
     } = this.state;
 
     return (
-      <div>
-        {
+      <StylesProvider generateClassName={generateClassName}>
+        <div>
+          {
           !options.hideError && error && (
             <div>
               <div>
@@ -70,8 +75,8 @@ class ReactRRuleGenerator extends PureComponent {
             </div>
           )
         }
-        <div>
-          {
+          <div>
+            {
             !options.hideStart && (
             <Start
               id={`${id}-start`}
@@ -80,12 +85,12 @@ class ReactRRuleGenerator extends PureComponent {
             />
             )
           }
-          <Repeat
-            id={`${id}-repeat`}
-            repeat={repeat}
-            handleChange={this.handleChange}
-          />
-          {
+            <Repeat
+              id={`${id}-repeat`}
+              repeat={repeat}
+              handleChange={this.handleChange}
+            />
+            {
             !options.hideEnd && (
             <End
               id={`${id}-end`}
@@ -94,8 +99,9 @@ class ReactRRuleGenerator extends PureComponent {
             />
             )
           }
+          </div>
         </div>
-      </div>
+      </StylesProvider>
     );
   }
 }

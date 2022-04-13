@@ -33,13 +33,12 @@ class App extends Component {
             }}
           />
         </div>
-        <hr />
         <div>
           <h5>Example handling</h5>
           <div>
-            <div className="form-group row d-flex align-items-sm-center">
-              <div className="col-sm-2 text-sm-right">
-                <span className="col-form-label">
+            <div>
+              <div>
+                <span>
                   <strong>
                     RRule
                   </strong>

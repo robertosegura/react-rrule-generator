@@ -24,7 +24,6 @@ const EndOnDate = ({
           value={date}
           disableToolbar
           autoOk
-          required
           fullWidth
           variant="inline"
           margin="normal"

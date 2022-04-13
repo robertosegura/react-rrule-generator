@@ -5,10 +5,11 @@ import TextField from '@material-ui/core/TextField';
 import Checkbox from '@material-ui/core/Checkbox';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormGroup from '@material-ui/core/FormGroup';
-import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
+import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import numericalFieldHandler from '../../../utils/numericalFieldHandler';
+import useStyles from '../../../styles';
 
 const RepeatWeekly = ({
   id,
@@ -19,15 +20,17 @@ const RepeatWeekly = ({
   },
   handleChange,
 }) => {
+  const classes = useStyles();
+
   let daysArray = toPairs(days);
   if (options.weekStartsOnSunday) {
     daysArray = daysArray.slice(-1).concat(daysArray.slice(0, -1));
   }
 
   return (
-    <div>
-      <div>
-        <div>
+    <Grid container direction="column">
+      <div className={classes.container}>
+        <div className={classes.input}>
           <TextField
             id={`${id}-interval`}
             name="repeat.weekly.interval"
@@ -36,23 +39,23 @@ const RepeatWeekly = ({
             label="Every"
             inputProps={{ min: 1 }}
             onChange={numericalFieldHandler(handleChange)}
+            fullWidth
           />
         </div>
-        <div>
-          <Box p={3}>
-            <Typography component="span">week(s)</Typography>
-          </Box>
-        </div>
+        <Box p={3}>
+          <Typography component="span">week(s)</Typography>
+        </Box>
       </div>
-      <FormGroup row>
-        {daysArray.map(([dayName, isDayActive]) => (
-          <FormControlLabel
-            key={dayName}
-            control={<Checkbox
-              name={`repeat.weekly.days[${dayName}]`}
-              checked={isDayActive}
-              color="primary"
-              onChange={(event) => {
+      <div className={classes.container}>
+        <FormGroup row>
+          {daysArray.map(([dayName, isDayActive]) => (
+            <FormControlLabel
+              key={dayName}
+              control={<Checkbox
+                name={`repeat.weekly.days[${dayName}]`}
+                checked={isDayActive}
+                color="primary"
+                onChange={(event) => {
                   const editedEvent = {
                     ...event,
                     target: {
@@ -64,13 +67,14 @@ const RepeatWeekly = ({
 
                   handleChange(editedEvent);
                 }}
-            />}
-            label={dayName.charAt(0).toUpperCase() + dayName.slice(1)}
-          />
+              />}
+              label={dayName.charAt(0).toUpperCase() + dayName.slice(1)}
+            />
           ))
           }
-      </FormGroup>
-    </div>
+        </FormGroup>
+      </div>
+    </Grid>
   );
 };
 

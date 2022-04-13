@@ -31,14 +31,14 @@ module.exports = {
         // match the requirements. When no loader matches it will fall
         // back to the "file" loader at the end of the loader list.
         oneOf: [
-          {
-            test: /\.css$/,
-            include: paths.appLibCss,
-            loader: ExtractTextPlugin.extract({
-              fallback: 'style-loader',
-              use: 'css-loader',
-            }),
-          },
+          // {
+          //   test: /\.css$/,
+          //   include: paths.appLibCss,
+          //   loader: ExtractTextPlugin.extract({
+          //     fallback: 'style-loader',
+          //     use: 'css-loader',
+          //   }),
+          // },
           // "url" loader works just like "file" loader but it also embeds
           // assets smaller than specified size as data URLs to avoid requests.
           {
@@ -71,43 +71,43 @@ module.exports = {
           // tags. If you use code splitting, however, any async bundles will still
           // use the "style" loader inside the async code so CSS from them won't be
           // in the main CSS file.
-          {
-            test: /\.(css|scss)$/,
-            use: ExtractTextPlugin.extract({
-              fallback: 'style-loader',
-              use: [
-                {
-                  loader: 'style-loader', // creates style nodes from JS strings
-                },
-                {
-                  loader: 'css-loader', // translates CSS into CommonJS
-                },
-                {
-                  loader: 'sass-loader', // compiles Sass to CSS
-                },
-                {
-                  loader: require.resolve('postcss-loader'),
-                  options: {
-                    // Necessary for external CSS imports to work
-                    // https://github.com/facebookincubator/create-react-app/issues/2677
-                    ident: 'postcss',
-                    plugins: () => [
-                      require('postcss-flexbugs-fixes'),
-                      autoprefixer({
-                        browsers: [
-                          '>1%',
-                          'last 4 versions',
-                          'Firefox ESR',
-                          'not ie < 9', // React doesn't support IE8 anyway
-                        ],
-                        flexbox: 'no-2009',
-                      }),
-                    ],
-                  },
-                },
-              ],
-            }),
-          },
+          // {
+          //   test: /\.(css|scss)$/,
+          //   use: ExtractTextPlugin.extract({
+          //     fallback: 'style-loader',
+          //     use: [
+          //       {
+          //         loader: 'style-loader', // creates style nodes from JS strings
+          //       },
+          //       {
+          //         loader: 'css-loader', // translates CSS into CommonJS
+          //       },
+          //       {
+          //         loader: 'sass-loader', // compiles Sass to CSS
+          //       },
+          //       {
+          //         loader: require.resolve('postcss-loader'),
+          //         options: {
+          //           // Necessary for external CSS imports to work
+          //           // https://github.com/facebookincubator/create-react-app/issues/2677
+          //           ident: 'postcss',
+          //           plugins: () => [
+          //             require('postcss-flexbugs-fixes'),
+          //             autoprefixer({
+          //               browsers: [
+          //                 '>1%',
+          //                 'last 4 versions',
+          //                 'Firefox ESR',
+          //                 'not ie < 9', // React doesn't support IE8 anyway
+          //               ],
+          //               flexbox: 'no-2009',
+          //             }),
+          //           ],
+          //         },
+          //       },
+          //     ],
+          //   }),
+          // },
           // "file" loader makes sure assets end up in the `build` folder.
           // When you `import` an asset, you get its filename.
           // This loader don't uses a "test" so it will catch all modules

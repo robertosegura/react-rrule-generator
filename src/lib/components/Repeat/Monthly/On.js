@@ -6,8 +6,8 @@ import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
-import Grid from '@material-ui/core/Grid';
 import numericalFieldHandler from '../../../utils/numericalFieldHandler';
+import useStyles from '../../../styles';
 
 const RepeatMonthlyOn = ({
   id,
@@ -16,12 +16,13 @@ const RepeatMonthlyOn = ({
   hasMoreModes,
   handleChange,
 }) => {
+  const classes = useStyles();
   const isActive = mode === 'on';
 
   return (
-    <div>
+    <div className={classes.container}>
       {hasMoreModes && (
-      <div>
+      <div className={classes.radio}>
         <FormControlLabel
           id={id}
           name="repeat.monthly.mode"
@@ -33,8 +34,8 @@ const RepeatMonthlyOn = ({
         />
       </div>
         )}
-      <div>
-        <FormControl style={{ width: 100 }}>
+      <div className={classes.input}>
+        <FormControl fullWidth>
           <InputLabel id={`${id}-day-label`}>Day</InputLabel>
           <Select
             id={`${id}-day`}
