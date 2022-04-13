@@ -1,5 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Grid from '@material-ui/core/Grid';
+import Box from '@material-ui/core/Box';
+import Typography from '@material-ui/core/Typography';
 import StartOnDate from './OnDate';
 
 const Start = ({
@@ -9,21 +12,16 @@ const Start = ({
   },
   handleChange,
 }) => (
-  <div className="px-3">
-    <div className="form-group row">
-      <div className="col-sm-2 text-sm-right">
-        <label
-          htmlFor={id}
-          className="col-form-label"
-        >
-          <strong>
-            Start Date
-          </strong>
-        </label>
-      </div>
+  <Grid container>
+    {/* <Grid item xs={2}>
+      <Box p={3} style={{ paddingLeft: 0 }}>
+        <Typography component="span">Start Date</Typography>
+      </Box>
+    </Grid> */}
+    <Grid item>
       <StartOnDate id={id} onDate={onDate} handleChange={handleChange} />
-    </div>
-  </div>
+    </Grid>
+  </Grid>
 );
 
 Start.propTypes = {

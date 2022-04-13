@@ -5,6 +5,9 @@ import TextField from '@material-ui/core/TextField';
 import Checkbox from '@material-ui/core/Checkbox';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormGroup from '@material-ui/core/FormGroup';
+import Grid from '@material-ui/core/Grid';
+import Box from '@material-ui/core/Box';
+import Typography from '@material-ui/core/Typography';
 import numericalFieldHandler from '../../../utils/numericalFieldHandler';
 
 const RepeatWeekly = ({
@@ -22,26 +25,25 @@ const RepeatWeekly = ({
   }
 
   return (
-    <div className="px-3">
-      <div className="form-group row d-flex align-items-sm-center">
-        <div className="col-sm-1 offset-sm-2">
-          every
-        </div>
-        <TextField
-          id={`${id}-interval`}
-          name="repeat.weekly.interval"
-          required
-          type="number"
-          value={interval}
-          label="Every"
-          inputProps={{ min: 1 }}
-          onChange={numericalFieldHandler(handleChange)}
-        />
-        <div className="col-sm-1">
-          weeks
-        </div>
-      </div>
-
+    <div>
+      <Grid container>
+        <Grid item>
+          <TextField
+            id={`${id}-interval`}
+            name="repeat.weekly.interval"
+            type="number"
+            value={interval}
+            label="Every"
+            inputProps={{ min: 1 }}
+            onChange={numericalFieldHandler(handleChange)}
+          />
+        </Grid>
+        <Grid item>
+          <Box p={3}>
+            <Typography component="span">week(s)</Typography>
+          </Box>
+        </Grid>
+      </Grid>
       <FormGroup row>
         {daysArray.map(([dayName, isDayActive]) => (
           <FormControlLabel

@@ -60,8 +60,7 @@ class ReactRRuleGenerator extends PureComponent {
     } = this.state;
 
     return (
-      <Grid container>
-
+      <div>
         {
           !options.hideError && error && (
             <Grid>
@@ -71,42 +70,32 @@ class ReactRRuleGenerator extends PureComponent {
             </Grid>
           )
         }
-
-        <Grid>
+        <div>
           {
             !options.hideStart && (
-              <Grid>
-                <Start
-                  id={`${id}-start`}
-                  start={start}
-                  handleChange={this.handleChange}
-                />
-              </Grid>
-            )
-          }
-
-          <Grid>
-            <Repeat
-              id={`${id}-repeat`}
-              repeat={repeat}
+            <Start
+              id={`${id}-start`}
+              start={start}
               handleChange={this.handleChange}
             />
-          </Grid>
-
-          {
-            !options.hideEnd && (
-              <Grid>
-                <End
-                  id={`${id}-end`}
-                  end={end}
-                  handleChange={this.handleChange}
-                />
-              </Grid>
             )
           }
-
-        </Grid>
-      </Grid>
+          <Repeat
+            id={`${id}-repeat`}
+            repeat={repeat}
+            handleChange={this.handleChange}
+          />
+          {
+            !options.hideEnd && (
+            <End
+              id={`${id}-end`}
+              end={end}
+              handleChange={this.handleChange}
+            />
+            )
+          }
+        </div>
+      </div>
     );
   }
 }

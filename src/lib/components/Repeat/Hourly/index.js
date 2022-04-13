@@ -1,6 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import TextField from '@material-ui/core/TextField';
+import Grid from '@material-ui/core/Grid';
+import Box from '@material-ui/core/Box';
+import Typography from '@material-ui/core/Typography';
 import numericalFieldHandler from '../../../utils/numericalFieldHandler';
 
 const RepeatHourly = ({
@@ -10,24 +13,23 @@ const RepeatHourly = ({
   },
   handleChange,
 }) => (
-  <div className="form-group row d-flex align-items-sm-center">
-    <div className="col-sm-1 offset-sm-2">
-      every
-    </div>
+  <Grid container>
     <TextField
       id={`${id}-interval`}
       name="repeat.hourly.interval"
       required
       type="number"
       value={interval}
-      label="Hours"
+      label="Every"
       inputProps={{ min: 1 }}
       onChange={numericalFieldHandler(handleChange)}
     />
-    <div className="col-sm-1">
-      hours
-    </div>
-  </div>
+    <Grid item>
+      <Box p={3}>
+        <Typography component="span">hour(s)</Typography>
+      </Box>
+    </Grid>
+  </Grid>
 );
 RepeatHourly.propTypes = {
   id: PropTypes.string.isRequired,

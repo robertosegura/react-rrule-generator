@@ -20,11 +20,11 @@ const StartOnDate = ({
       value={date}
       disableToolbar
       autoOk
-      required
       variant="inline"
       format="MM/dd/yyyy"
       margin="normal"
       label="Start Date"
+      style={{ width: 240 }}
       onChange={(inputDate) => {
           const editedEvent = {
             target: {

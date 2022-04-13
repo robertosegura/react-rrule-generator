@@ -6,6 +6,7 @@ import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
+import Grid from '@material-ui/core/Grid';
 import { DAYS } from '../../../constants/index';
 
 const RepeatMonthlyOnThe = ({
@@ -18,54 +19,55 @@ const RepeatMonthlyOnThe = ({
   const isActive = mode === 'on the';
 
   return (
-    <div className={`form-group row d-flex align-items-sm-center ${!isActive && 'opacity-50'}`}>
-      <div className="col-sm-1 offset-sm-2">
-        {hasMoreModes && (
-          <FormControlLabel
-            id={id}
-            name="repeat.monthly.mode"
-            value="on the"
-            control={<Radio color="primary" />}
-            label="on the"
-            checked={isActive}
-            onChange={handleChange}
-          />
+    <Grid container spacing={2}>
+      {hasMoreModes && (
+      <Grid item xs={2}>
+        <FormControlLabel
+          id={id}
+          name="repeat.monthly.mode"
+          value="on the"
+          control={<Radio color="primary" />}
+          label="on the"
+          checked={isActive}
+          onChange={handleChange}
+        />
+      </Grid>
         )}
-      </div>
-
-      <FormControl>
-        <InputLabel id={`${id}-which-label`}>Occurrence</InputLabel>
-        <Select
-          id={`${id}-which`}
-          labelId={`${id}-which-label`}
-          name="repeat.monthly.onThe.which"
-          value={onThe.which}
-          disabled={!isActive}
-          onChange={handleChange}
-        >
-          <MenuItem value="First">First</MenuItem>
-          <MenuItem value="Second">Second</MenuItem>
-          <MenuItem value="Third">Third</MenuItem>
-          <MenuItem value="Fourth">Fourth</MenuItem>
-          <MenuItem value="Last">Last</MenuItem>
-        </Select>
-      </FormControl>
-
-      <FormControl>
-        <InputLabel id={`${id}-day-label`}>Day</InputLabel>
-        <Select
-          id={`${id}-day`}
-          labelId={`${id}-day-label`}
-          name="repeat.monthly.onThe.day"
-          value={onThe.day}
-          disabled={!isActive}
-          onChange={handleChange}
-        >
-          {DAYS.map(day => <MenuItem key={day} value={day}>{day}</MenuItem>)}
-        </Select>
-      </FormControl>
-
-    </div>
+      <Grid item>
+        <FormControl style={{ width: 100 }}>
+          <InputLabel id={`${id}-which-label`}>Occurrence</InputLabel>
+          <Select
+            id={`${id}-which`}
+            labelId={`${id}-which-label`}
+            name="repeat.monthly.onThe.which"
+            value={onThe.which}
+            disabled={!isActive}
+            onChange={handleChange}
+          >
+            <MenuItem value="First">First</MenuItem>
+            <MenuItem value="Second">Second</MenuItem>
+            <MenuItem value="Third">Third</MenuItem>
+            <MenuItem value="Fourth">Fourth</MenuItem>
+            <MenuItem value="Last">Last</MenuItem>
+          </Select>
+        </FormControl>
+      </Grid>
+      <Grid item>
+        <FormControl style={{ width: 100 }}>
+          <InputLabel id={`${id}-day-label`}>Day</InputLabel>
+          <Select
+            id={`${id}-day`}
+            labelId={`${id}-day-label`}
+            name="repeat.monthly.onThe.day"
+            value={onThe.day}
+            disabled={!isActive}
+            onChange={handleChange}
+          >
+            {DAYS.map(day => <MenuItem key={day} value={day}>{day}</MenuItem>)}
+          </Select>
+        </FormControl>
+      </Grid>
+    </Grid>
   );
 };
 RepeatMonthlyOnThe.propTypes = {

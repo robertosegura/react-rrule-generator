@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Grid from '@material-ui/core/Grid';
 import RepeatYearlyOn from './On';
 import RepeatYearlyOnThe from './OnThe';
 
@@ -16,7 +17,7 @@ const RepeatYearly = ({
   const isTheOnlyOneMode = option => options.modes === option;
   const isOptionAvailable = option => !options.modes || isTheOnlyOneMode(option);
   return (
-    <div>
+    <Grid container direction="column">
       {isOptionAvailable('on') && (
         <RepeatYearlyOn
           id={`${id}-on`}
@@ -35,7 +36,7 @@ const RepeatYearly = ({
           handleChange={handleChange}
         />
       )}
-    </div>
+    </Grid>
   );
 };
 RepeatYearly.propTypes = {

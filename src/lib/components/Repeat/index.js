@@ -4,6 +4,9 @@ import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
+import Grid from '@material-ui/core/Grid';
+import Box from '@material-ui/core/Box';
+import Typography from '@material-ui/core/Typography';
 import RepeatYearly from './Yearly/index';
 import RepeatMonthly from './Monthly/index';
 import RepeatWeekly from './Weekly/index';
@@ -29,35 +32,32 @@ const Repeat = ({
   const isOptionSelected = option => frequency === option;
 
   return (
-    <div className="px-3">
-      <div className="form-group row">
-        <div className="col-sm-2 text-sm-right">
-          <label
-            htmlFor={`${id}-frequency`}
-            className="col-form-label"
-          >
-            <strong>
-              Repeat
-            </strong>
-          </label>
-        </div>
-        <FormControl>
-          <InputLabel id={`${id}-frequency-label`}>Frequency</InputLabel>
-          <Select
-            id={`${id}-frequency`}
-            labelId={`${id}-frequency-label`}
-            name="repeat.frequency"
-            value={frequency}
-            onChange={handleChange}
-          >
-            {isOptionAvailable('Yearly') && <MenuItem value="Yearly">Yearly</MenuItem>}
-            {isOptionAvailable('Monthly') && <MenuItem value="Monthly">Monthly</MenuItem>}
-            {isOptionAvailable('Weekly') && <MenuItem value="Weekly">Weekly</MenuItem>}
-            {isOptionAvailable('Daily') && <MenuItem value="Daily">Daily</MenuItem>}
-            {isOptionAvailable('Hourly') && <MenuItem value="Hourly">Hourly</MenuItem>}
-          </Select>
-        </FormControl>
-      </div>
+    <div>
+      <Grid container>
+        {/* <Grid item xs={2}>
+          <Box p={2} style={{ paddingLeft: 0 }}>
+            <Typography component="span">Frequency</Typography>
+          </Box>
+        </Grid> */}
+        <Grid item>
+          <FormControl style={{ width: 240 }}>
+            <InputLabel id={`${id}-frequency-label`}>Frequency</InputLabel>
+            <Select
+              id={`${id}-frequency`}
+              labelId={`${id}-frequency-label`}
+              name="repeat.frequency"
+              value={frequency}
+              onChange={handleChange}
+            >
+              {isOptionAvailable('Yearly') && <MenuItem value="Yearly">Yearly</MenuItem>}
+              {isOptionAvailable('Monthly') && <MenuItem value="Monthly">Monthly</MenuItem>}
+              {isOptionAvailable('Weekly') && <MenuItem value="Weekly">Weekly</MenuItem>}
+              {isOptionAvailable('Daily') && <MenuItem value="Daily">Daily</MenuItem>}
+              {isOptionAvailable('Hourly') && <MenuItem value="Hourly">Hourly</MenuItem>}
+            </Select>
+          </FormControl>
+        </Grid>
+      </Grid>
 
       {
         isOptionSelected('Yearly') &&

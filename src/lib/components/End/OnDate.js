@@ -13,17 +13,6 @@ const EndOnDate = ({
   },
   handleChange,
 }) =>
-  // const CustomCalendar = options.calendarComponent;
-
-  // const locale = options.weekStartsOnSunday ? 'en-ca' : 'en-gb';
-  // const calendarAttributes = {
-  //   'aria-label': translateLabel(translations, 'end.tooltip'),
-  //   value: date,
-  //   dateFormat: DATE_TIME_FORMAT,
-  //   locale,
-  //   readOnly: true,
-  // };
-
   (
     <MuiPickersUtilsProvider utils={DateFnsUtils}>
       <KeyboardDatePicker
@@ -33,7 +22,6 @@ const EndOnDate = ({
         autoOk
         required
         variant="inline"
-        // format="MM/dd/yyyy"
         margin="normal"
         label="End Date"
         onChange={(inputDate) => {
@@ -46,63 +34,12 @@ const EndOnDate = ({
 
           handleChange(editedEvent);
         }}
-        // minDate={activeDate ? null : new Date()}
         KeyboardButtonProps={{
           'aria-label': 'change date',
         }}
       />
     </MuiPickersUtilsProvider>
-  )
-
-
-  // return (
-  //   <div className="col-6 col-sm-3">
-  //     {
-  //       CustomCalendar
-  //         ? <CustomCalendar
-  //           key={`${id}-calendar`}
-  //           {...calendarAttributes}
-  //           onChange={(event) => {
-  //             const editedEvent = {
-  //               target: {
-  //                 value: event.target.value,
-  //                 name: 'end.onDate.date',
-  //               },
-  //             };
-
-  //             handleChange(editedEvent);
-  //           }}
-  //         />
-  //         : <DateTime
-  //           {...calendarAttributes}
-  //           inputProps={
-  //             {
-  //               id: `${id}-datetime`,
-  //               name: 'end.onDate.date',
-  //               readOnly: true,
-  //             }
-  //           }
-  //           locale={translateLabel(translations, 'locale')}
-  //           timeFormat={false}
-  //           viewMode="days"
-  //           closeOnSelect
-  //           closeOnTab
-  //           required
-  //           onChange={(inputDate) => {
-  //             const editedEvent = {
-  //               target: {
-  //                 value: moment(inputDate).format(DATE_TIME_FORMAT),
-  //                 name: 'end.onDate.date',
-  //               },
-  //             };
-
-  //             handleChange(editedEvent);
-  //           }}
-  //         />
-  //     }
-  //   </div>
-  // );
-;
+  );
 
 EndOnDate.propTypes = {
   id: PropTypes.string.isRequired,
