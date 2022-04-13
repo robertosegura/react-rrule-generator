@@ -24,8 +24,8 @@ const RepeatMonthly = ({
 
   return (
     <div>
-      <Grid container>
-        <Grid item>
+      <div>
+        <div>
           <TextField
             id={`${id}-interval`}
             name="repeat.monthly.interval"
@@ -35,14 +35,14 @@ const RepeatMonthly = ({
             inputProps={{ min: 1 }}
             onChange={numericalFieldHandler(handleChange)}
           />
-        </Grid>
-        <Grid item>
+        </div>
+        <div>
           <Box p={3}>
             <Typography component="span">month(s)</Typography>
           </Box>
-        </Grid>
-      </Grid>
-      <Grid container>
+        </div>
+      </div>
+      <div>
         {isOptionAvailable('on') && (
           <RepeatMonthlyOn
             id={`${id}-on`}
@@ -61,7 +61,7 @@ const RepeatMonthly = ({
             handleChange={handleChange}
           />
         )}
-      </Grid>
+      </div>
     </div>
   );
 };

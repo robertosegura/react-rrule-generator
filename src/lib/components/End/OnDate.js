@@ -5,6 +5,7 @@ import DateFnsUtils from '@date-io/date-fns';
 import { KeyboardDatePicker, MuiPickersUtilsProvider } from '@material-ui/pickers';
 import 'moment/min/locales';
 import { DATE_TIME_FORMAT } from '../../constants/index';
+import useStyles from '../../styles';
 
 const EndOnDate = ({
   id,
@@ -12,19 +13,24 @@ const EndOnDate = ({
     date,
   },
   handleChange,
-}) =>
-  (
-    <MuiPickersUtilsProvider utils={DateFnsUtils}>
-      <KeyboardDatePicker
-        id={`${id}-endDate`}
-        value={date}
-        disableToolbar
-        autoOk
-        required
-        variant="inline"
-        margin="normal"
-        label="End Date"
-        onChange={(inputDate) => {
+}) => {
+  const classes = useStyles();
+
+  return (
+    <div className={classes.input}>
+      <MuiPickersUtilsProvider utils={DateFnsUtils}>
+        <KeyboardDatePicker
+          id={`${id}-endDate`}
+          value={date}
+          disableToolbar
+          autoOk
+          required
+          fullWidth
+          variant="inline"
+          margin="normal"
+          label="End Date"
+          style={{ marginTop: 0 }}
+          onChange={(inputDate) => {
           const editedEvent = {
             target: {
               value: moment(inputDate).format(DATE_TIME_FORMAT),
@@ -34,12 +40,14 @@ const EndOnDate = ({
 
           handleChange(editedEvent);
         }}
-        KeyboardButtonProps={{
+          KeyboardButtonProps={{
           'aria-label': 'change date',
         }}
-      />
-    </MuiPickersUtilsProvider>
+        />
+      </MuiPickersUtilsProvider>
+    </div>
   );
+};
 
 EndOnDate.propTypes = {
   id: PropTypes.string.isRequired,

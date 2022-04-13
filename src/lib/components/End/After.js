@@ -3,25 +3,30 @@ import PropTypes from 'prop-types';
 import TextField from '@material-ui/core/TextField';
 import { Grid } from '@material-ui/core';
 import numericalFieldHandler from '../../utils/numericalFieldHandler';
+import useStyles from '../../styles';
 
 const EndAfter = ({
   id,
   after,
   handleChange,
-}) => (
-  <Grid item>
-    <TextField
-      id={id}
-      name="end.after"
-      type="number"
-      value={after}
-      label="Executions"
-      inputProps={{ min: 1 }}
-      onChange={numericalFieldHandler(handleChange)}
-      style={{ width: 100 }}
-    />
-  </Grid>
-);
+}) => {
+  const classes = useStyles();
+
+  return (
+    <div className={classes.input}>
+      <TextField
+        id={id}
+        name="end.after"
+        type="number"
+        value={after}
+        label="Executions"
+        inputProps={{ min: 1 }}
+        onChange={numericalFieldHandler(handleChange)}
+        fullWidth
+      />
+    </div>
+  );
+};
 
 EndAfter.propTypes = {
   id: PropTypes.string.isRequired,

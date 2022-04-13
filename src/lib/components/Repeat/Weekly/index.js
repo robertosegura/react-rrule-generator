@@ -26,8 +26,8 @@ const RepeatWeekly = ({
 
   return (
     <div>
-      <Grid container>
-        <Grid item>
+      <div>
+        <div>
           <TextField
             id={`${id}-interval`}
             name="repeat.weekly.interval"
@@ -37,13 +37,13 @@ const RepeatWeekly = ({
             inputProps={{ min: 1 }}
             onChange={numericalFieldHandler(handleChange)}
           />
-        </Grid>
-        <Grid item>
+        </div>
+        <div>
           <Box p={3}>
             <Typography component="span">week(s)</Typography>
           </Box>
-        </Grid>
-      </Grid>
+        </div>
+      </div>
       <FormGroup row>
         {daysArray.map(([dayName, isDayActive]) => (
           <FormControlLabel

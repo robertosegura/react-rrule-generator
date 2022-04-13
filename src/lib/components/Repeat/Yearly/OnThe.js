@@ -8,6 +8,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
 import Grid from '@material-ui/core/Grid';
 import { MONTHS, DAYS } from '../../../constants/index';
+import useStyles from '../../../styles';
 
 const RepeatYearlyOnThe = ({
   id,
@@ -16,12 +17,13 @@ const RepeatYearlyOnThe = ({
   hasMoreModes,
   handleChange,
 }) => {
+  const classes = useStyles();
   const isActive = mode === 'on the';
 
   return (
-    <Grid container spacing={1}>
+    <div className={classes.container}>
       {hasMoreModes && (
-        <Grid item xs={2}>
+        <div className={classes.radio}>
           <FormControlLabel
             id={id}
             name="repeat.yearly.mode"
@@ -31,11 +33,11 @@ const RepeatYearlyOnThe = ({
             checked={isActive}
             onChange={handleChange}
           />
-        </Grid>
+        </div>
         )}
 
-      <Grid item xs={3}>
-        <FormControl style={{ width: '100%' }}>
+      <div style={{ width: '26.6%' }}>
+        <FormControl fullWidth>
           <InputLabel id={`${id}-which-label`}>Occurrence</InputLabel>
           <Select
             id={`${id}-which`}
@@ -52,9 +54,9 @@ const RepeatYearlyOnThe = ({
             <MenuItem value="Last">Last</MenuItem>
           </Select>
         </FormControl>
-      </Grid>
-      <Grid item xs={3}>
-        <FormControl style={{ width: '100%' }}>
+      </div>
+      <div style={{ width: '26.6%' }}>
+        <FormControl fullWidth>
           <InputLabel id={`${id}-day-label`}>Day</InputLabel>
           <Select
             id={`${id}-day`}
@@ -67,8 +69,8 @@ const RepeatYearlyOnThe = ({
             {DAYS.map(day => <MenuItem key={day} value={day}>{day}</MenuItem>)}
           </Select>
         </FormControl>
-      </Grid>
-      <Grid item xs={3}>
+      </div>
+      <div style={{ width: '26.6%' }}>
         <FormControl style={{ width: '100%' }}>
           <InputLabel id={`${id}-month-label`}>Month</InputLabel>
           <Select
@@ -82,8 +84,8 @@ const RepeatYearlyOnThe = ({
             {MONTHS.map(month => <MenuItem key={month} value={month}>{month}</MenuItem>)}
           </Select>
         </FormControl>
-      </Grid>
-    </Grid>
+      </div>
+    </div>
   );
 };
 RepeatYearlyOnThe.propTypes = {

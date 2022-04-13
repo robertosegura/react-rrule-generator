@@ -19,9 +19,9 @@ const RepeatMonthlyOn = ({
   const isActive = mode === 'on';
 
   return (
-    <Grid container>
+    <div>
       {hasMoreModes && (
-      <Grid item xs={2}>
+      <div>
         <FormControlLabel
           id={id}
           name="repeat.monthly.mode"
@@ -31,9 +31,9 @@ const RepeatMonthlyOn = ({
           checked={isActive}
           onChange={handleChange}
         />
-      </Grid>
+      </div>
         )}
-      <Grid item xs={2}>
+      <div>
         <FormControl style={{ width: 100 }}>
           <InputLabel id={`${id}-day-label`}>Day</InputLabel>
           <Select
@@ -48,8 +48,8 @@ const RepeatMonthlyOn = ({
               <MenuItem key={`repeat-montly-day-${i + 1}`} value={i + 1}>{i + 1}</MenuItem>)}
           </Select>
         </FormControl>
-      </Grid>
-    </Grid>
+      </div>
+    </div>
   );
 };
 RepeatMonthlyOn.propTypes = {

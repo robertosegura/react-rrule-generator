@@ -63,11 +63,11 @@ class ReactRRuleGenerator extends PureComponent {
       <div>
         {
           !options.hideError && error && (
-            <Grid>
+            <div>
               <div>
                 Invalid Rule {error.value}
               </div>
-            </Grid>
+            </div>
           )
         }
         <div>

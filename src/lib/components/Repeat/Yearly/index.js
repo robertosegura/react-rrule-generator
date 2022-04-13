@@ -17,7 +17,7 @@ const RepeatYearly = ({
   const isTheOnlyOneMode = option => options.modes === option;
   const isOptionAvailable = option => !options.modes || isTheOnlyOneMode(option);
   return (
-    <Grid container direction="column">
+    <div>
       {isOptionAvailable('on') && (
         <RepeatYearlyOn
           id={`${id}-on`}
@@ -36,7 +36,7 @@ const RepeatYearly = ({
           handleChange={handleChange}
         />
       )}
-    </Grid>
+    </div>
   );
 };
 RepeatYearly.propTypes = {

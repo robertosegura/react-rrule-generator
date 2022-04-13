@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Grid from '@material-ui/core/Grid';
 import StartOnDate from './OnDate';
+import useStyles from '../../styles';
 
 const Start = ({
   id,
@@ -9,13 +10,14 @@ const Start = ({
     onDate,
   },
   handleChange,
-}) => (
-  <Grid container>
-    <Grid item xs={6}>
+}) => {
+  const classes = useStyles();
+  return (
+    <div className={classes.container}>
       <StartOnDate id={id} onDate={onDate} handleChange={handleChange} />
-    </Grid>
-  </Grid>
-);
+    </div>
+  );
+};
 
 Start.propTypes = {
   id: PropTypes.string.isRequired,

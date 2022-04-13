@@ -19,9 +19,9 @@ const RepeatMonthlyOnThe = ({
   const isActive = mode === 'on the';
 
   return (
-    <Grid container spacing={2}>
+    <div>
       {hasMoreModes && (
-      <Grid item xs={2}>
+      <div>
         <FormControlLabel
           id={id}
           name="repeat.monthly.mode"
@@ -31,9 +31,9 @@ const RepeatMonthlyOnThe = ({
           checked={isActive}
           onChange={handleChange}
         />
-      </Grid>
+      </div>
         )}
-      <Grid item>
+      <div>
         <FormControl style={{ width: 100 }}>
           <InputLabel id={`${id}-which-label`}>Occurrence</InputLabel>
           <Select
@@ -51,8 +51,8 @@ const RepeatMonthlyOnThe = ({
             <MenuItem value="Last">Last</MenuItem>
           </Select>
         </FormControl>
-      </Grid>
-      <Grid item>
+      </div>
+      <div>
         <FormControl style={{ width: 100 }}>
           <InputLabel id={`${id}-day-label`}>Day</InputLabel>
           <Select
@@ -66,8 +66,8 @@ const RepeatMonthlyOnThe = ({
             {DAYS.map(day => <MenuItem key={day} value={day}>{day}</MenuItem>)}
           </Select>
         </FormControl>
-      </Grid>
-    </Grid>
+      </div>
+    </div>
   );
 };
 RepeatMonthlyOnThe.propTypes = {

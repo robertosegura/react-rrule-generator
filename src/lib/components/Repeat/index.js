@@ -10,6 +10,7 @@ import RepeatMonthly from './Monthly/index';
 import RepeatWeekly from './Weekly/index';
 import RepeatDaily from './Daily/index';
 import RepeatHourly from './Hourly/index';
+import useStyles from '../../styles';
 
 
 const Repeat = ({
@@ -26,14 +27,15 @@ const Repeat = ({
   handleChange,
   
 }) => {
+  const classes = useStyles();
   const isOptionAvailable = option => !options.frequency || options.frequency.indexOf(option) !== -1;
   const isOptionSelected = option => frequency === option;
 
   return (
     <div>
-      <Grid container>
-        <Grid item xs={6}>
-          <FormControl style={{ width: '100%' }}>
+      <div className={classes.container}>
+        <div className={classes.input}>
+          <FormControl fullWidth>
             <InputLabel id={`${id}-frequency-label`}>Frequency</InputLabel>
             <Select
               id={`${id}-frequency`}
@@ -49,9 +51,8 @@ const Repeat = ({
               {isOptionAvailable('Hourly') && <MenuItem value="Hourly">Hourly</MenuItem>}
             </Select>
           </FormControl>
-        </Grid>
-      </Grid>
-
+        </div>
+      </div>
       {
         isOptionSelected('Yearly') &&
         <RepeatYearly

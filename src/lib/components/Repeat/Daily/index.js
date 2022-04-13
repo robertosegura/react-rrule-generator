@@ -13,8 +13,8 @@ const RepeatDaily = ({
   },
   handleChange,
 }) => (
-  <Grid container>
-    <Grid item>
+  <div>
+    <div>
       <TextField
         id={`${id}-interval`}
         name="repeat.daily.interval"
@@ -24,13 +24,13 @@ const RepeatDaily = ({
         inputProps={{ min: 1 }}
         onChange={numericalFieldHandler(handleChange)}
       />
-    </Grid>
-    <Grid item>
+    </div>
+    <div>
       <Box p={3}>
         <Typography component="span">day(s)</Typography>
       </Box>
-    </Grid>
-  </Grid>
+    </div>
+  </div>
 );
 RepeatDaily.propTypes = {
   id: PropTypes.string.isRequired,

@@ -11,6 +11,7 @@ import Select from '@material-ui/core/Select';
 import Grid from '@material-ui/core/Grid';
 import numericalFieldHandler from '../../../utils/numericalFieldHandler';
 import { MONTHS } from '../../../constants/index';
+import useStyles from '../../../styles';
 
 const RepeatYearlyOn = ({
   id,
@@ -19,13 +20,14 @@ const RepeatYearlyOn = ({
   hasMoreModes,
   handleChange,
 }) => {
+  const classes = useStyles();
   const daysInMonth = moment(on.month, 'MMM').daysInMonth();
   const isActive = mode === 'on';
 
   return (
-    <Grid container spacing={1}>
+    <div className={classes.container}>
       {hasMoreModes && (
-        <Grid item xs={2}>
+        <div className={classes.radio}>
           <FormControlLabel
             id={id}
             name="repeat.yearly.mode"
@@ -35,10 +37,10 @@ const RepeatYearlyOn = ({
             checked={isActive}
             onChange={handleChange}
           />
-        </Grid>
+        </div>
       )}
-      <Grid item xs={5}>
-        <FormControl style={{ width: '100%' }}>
+      <div className={classes.input}>
+        <FormControl fullWidth>
           <InputLabel id={`${id}-month-label`}>Month</InputLabel>
           <Select
             id={`${id}-month`}
@@ -47,13 +49,14 @@ const RepeatYearlyOn = ({
             value={on.month}
             disabled={!isActive}
             onChange={handleChange}
+            fullWidth
           >
             {MONTHS.map(month => <MenuItem key={month} value={month}>{month}</MenuItem>)}
           </Select>
         </FormControl>
-      </Grid>
-      <Grid item xs={5}>
-        <FormControl style={{ width: '100%' }}>
+      </div>
+      <div className={classes.input}>
+        <FormControl fullWidth>
           <InputLabel id={`${id}-day-label`}>Day</InputLabel>
           <Select
             labelId={`${id}-day-label`}
@@ -68,8 +71,8 @@ const RepeatYearlyOn = ({
             ))}
           </Select>
         </FormControl>
-      </Grid>
-    </Grid>
+      </div>
+    </div>
   );
 };
 RepeatYearlyOn.propTypes = {

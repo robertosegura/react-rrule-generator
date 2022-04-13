@@ -5,6 +5,7 @@ import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
 import Grid from '@material-ui/core/Grid';
+import useStyles from '../../styles';
 import EndAfter from './After';
 import EndOnDate from './OnDate';
 
@@ -18,13 +19,14 @@ const End = ({
   },
   handleChange,
 }) => {
+  const classes = useStyles();
   const isOptionAvailable = option => !options.modes || options.modes.indexOf(option) !== -1;
   const isOptionSelected = option => mode === option;
 
   return (
-    <Grid container>
-      <Grid item xs={6}>
-        <FormControl style={{ width: '100%' }}>
+    <div className={classes.container}>
+      <div className={classes.input}>
+        <FormControl fullWidth>
           <InputLabel id={`${id}-label`}>End Date</InputLabel>
           <Select
             id={id}
@@ -38,7 +40,7 @@ const End = ({
             {isOptionAvailable('On date') && <MenuItem value="On date">On Date</MenuItem>}
           </Select>
         </FormControl>
-      </Grid>
+      </div>
       {
           isOptionSelected('After') &&
           <EndAfter
@@ -55,7 +57,7 @@ const End = ({
             handleChange={handleChange}
           />
         }
-    </Grid>
+    </div>
   );
 };
 

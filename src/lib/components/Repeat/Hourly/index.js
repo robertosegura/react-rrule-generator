@@ -13,7 +13,7 @@ const RepeatHourly = ({
   },
   handleChange,
 }) => (
-  <Grid container>
+  <div>
     <TextField
       id={`${id}-interval`}
       name="repeat.hourly.interval"
@@ -24,12 +24,12 @@ const RepeatHourly = ({
       inputProps={{ min: 1 }}
       onChange={numericalFieldHandler(handleChange)}
     />
-    <Grid item>
+    <div>
       <Box p={3}>
         <Typography component="span">hour(s)</Typography>
       </Box>
-    </Grid>
-  </Grid>
+    </div>
+  </div>
 );
 RepeatHourly.propTypes = {
   id: PropTypes.string.isRequired,
