@@ -23,7 +23,7 @@ const RepeatYearlyOn = ({
   const isActive = mode === 'on';
 
   return (
-    <Grid container>
+    <Grid container spacing={1}>
       {hasMoreModes && (
         <Grid item xs={2}>
           <FormControlLabel
@@ -37,8 +37,8 @@ const RepeatYearlyOn = ({
           />
         </Grid>
       )}
-      <Grid item xs={2}>
-        <FormControl style={{ width: 100 }}>
+      <Grid item xs={5}>
+        <FormControl style={{ width: '100%' }}>
           <InputLabel id={`${id}-month-label`}>Month</InputLabel>
           <Select
             id={`${id}-month`}
@@ -52,8 +52,8 @@ const RepeatYearlyOn = ({
           </Select>
         </FormControl>
       </Grid>
-      <Grid item>
-        <FormControl style={{ width: 100 }}>
+      <Grid item xs={5}>
+        <FormControl style={{ width: '100%' }}>
           <InputLabel id={`${id}-day-label`}>Day</InputLabel>
           <Select
             labelId={`${id}-day-label`}

@@ -5,8 +5,6 @@ import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import Grid from '@material-ui/core/Grid';
-import Box from '@material-ui/core/Box';
-import Typography from '@material-ui/core/Typography';
 import RepeatYearly from './Yearly/index';
 import RepeatMonthly from './Monthly/index';
 import RepeatWeekly from './Weekly/index';
@@ -34,13 +32,8 @@ const Repeat = ({
   return (
     <div>
       <Grid container>
-        {/* <Grid item xs={2}>
-          <Box p={2} style={{ paddingLeft: 0 }}>
-            <Typography component="span">Frequency</Typography>
-          </Box>
-        </Grid> */}
-        <Grid item>
-          <FormControl style={{ width: 240 }}>
+        <Grid item xs={6}>
+          <FormControl style={{ width: '100%' }}>
             <InputLabel id={`${id}-frequency-label`}>Frequency</InputLabel>
             <Select
               id={`${id}-frequency`}

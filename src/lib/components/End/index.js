@@ -5,8 +5,6 @@ import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
 import Grid from '@material-ui/core/Grid';
-import Box from '@material-ui/core/Box';
-import Typography from '@material-ui/core/Typography';
 import EndAfter from './After';
 import EndOnDate from './OnDate';
 
@@ -24,14 +22,9 @@ const End = ({
   const isOptionSelected = option => mode === option;
 
   return (
-    <Grid container spacing={4}>
-      {/* <Grid item xs={2}>
-        <Box p={2} style={{ paddingLeft: 0 }}>
-          <Typography component="span">End Date</Typography>
-        </Box>
-      </Grid> */}
-      <Grid item>
-        <FormControl style={{ width: 240 }}>
+    <Grid container>
+      <Grid item xs={6}>
+        <FormControl style={{ width: '100%' }}>
           <InputLabel id={`${id}-label`}>End Date</InputLabel>
           <Select
             id={id}

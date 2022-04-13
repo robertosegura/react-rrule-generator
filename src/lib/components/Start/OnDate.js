@@ -24,7 +24,7 @@ const StartOnDate = ({
       format="MM/dd/yyyy"
       margin="normal"
       label="Start Date"
-      style={{ width: 240 }}
+      style={{ width: '100%' }}
       onChange={(inputDate) => {
           const editedEvent = {
             target: {

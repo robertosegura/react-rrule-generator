@@ -19,7 +19,7 @@ const RepeatYearlyOnThe = ({
   const isActive = mode === 'on the';
 
   return (
-    <Grid container>
+    <Grid container spacing={1}>
       {hasMoreModes && (
         <Grid item xs={2}>
           <FormControlLabel
@@ -34,8 +34,8 @@ const RepeatYearlyOnThe = ({
         </Grid>
         )}
 
-      <Grid item xs={2}>
-        <FormControl style={{ width: 100 }}>
+      <Grid item xs={3}>
+        <FormControl style={{ width: '100%' }}>
           <InputLabel id={`${id}-which-label`}>Occurrence</InputLabel>
           <Select
             id={`${id}-which`}
@@ -53,8 +53,8 @@ const RepeatYearlyOnThe = ({
           </Select>
         </FormControl>
       </Grid>
-      <Grid item xs={2}>
-        <FormControl style={{ width: 100 }}>
+      <Grid item xs={3}>
+        <FormControl style={{ width: '100%' }}>
           <InputLabel id={`${id}-day-label`}>Day</InputLabel>
           <Select
             id={`${id}-day`}
@@ -68,8 +68,8 @@ const RepeatYearlyOnThe = ({
           </Select>
         </FormControl>
       </Grid>
-      <Grid item xs={2}>
-        <FormControl style={{ width: 100 }}>
+      <Grid item xs={3}>
+        <FormControl style={{ width: '100%' }}>
           <InputLabel id={`${id}-month-label`}>Month</InputLabel>
           <Select
             id={`${id}-month`}
