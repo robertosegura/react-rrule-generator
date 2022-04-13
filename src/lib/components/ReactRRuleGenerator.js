@@ -1,7 +1,6 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { cloneDeep, set } from 'lodash';
-import { Grid } from '@material-ui/core';
 import { StylesProvider, createGenerateClassName } from '@material-ui/core/styles';
 import Start from './Start/index';
 import Repeat from './Repeat/index';
