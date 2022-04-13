@@ -11,6 +11,7 @@ import configureInitialState from '../utils/configureInitialState';
 
 const generateClassName = createGenerateClassName({
   productionPrefix: 'rrule',
+  seed: 'rrule',
 });
 
 class ReactRRuleGenerator extends PureComponent {
