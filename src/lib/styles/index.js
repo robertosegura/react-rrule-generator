@@ -11,7 +11,7 @@ const useStyles = makeStyles(() => ({
     width: '40%',
   },
   radio: {
-    width: '15%',
+    width: '20%',
   },
 }));
 

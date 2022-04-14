@@ -8,6 +8,7 @@ import End from './End/index';
 import computeRRuleToString from '../utils/computeRRule/toString/computeRRule';
 import computeRRuleFromString from '../utils/computeRRule/fromString/computeRRule';
 import configureInitialState from '../utils/configureInitialState';
+import computeStart from '../utils/computeRRule/toString/computeStart';
 
 const generateClassName = createGenerateClassName({
   productionPrefix: 'rrule',
@@ -46,9 +47,10 @@ class ReactRRuleGenerator extends PureComponent {
     const newData = cloneDeep(this.state.data);
     set(newData, target.name, target.value);
     const rrule = computeRRuleToString(newData);
+    const start = computeStart(newData.start);
 
     this.setState({ data: newData });
-    this.props.onChange(rrule);
+    this.props.onChange({ rrule, start });
   };
 
   render() {
@@ -83,6 +85,7 @@ class ReactRRuleGenerator extends PureComponent {
               id={`${id}-start`}
               start={start}
               handleChange={this.handleChange}
+              readOnly={options.readOnlyStart}
             />
             )
           }

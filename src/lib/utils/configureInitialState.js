@@ -95,6 +95,7 @@ const configureState = (config = {}, id) => {
       hideEnd: config.hideEnd,
       hideError: config.hideError,
       weekStartsOnSunday: config.weekStartsOnSunday,
+      readOnlyStart: config.readOnlyStart,
     },
     error: null,
   };

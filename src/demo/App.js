@@ -6,12 +6,12 @@ import ReactRRuleGenerator from '../lib';
 
 class App extends Component {
   state = {
-    rrule: 'DTSTART:20190301T230000Z\nFREQ=YEARLY;BYMONTH=1;BYMONTHDAY=1',
+    rrule: 'DTSTART:20211222T110000Z\nRRULE:FREQ=WEEKLY;INTERVAL=1;BYDAY=WE,FR;UNTIL=20220430T115500Z',
     isCopied: false,
   };
 
-  handleChange = (newRRule) => {
-    this.setState({ rrule: newRRule, isCopied: false });
+  handleChange = ({ rrule }) => {
+    this.setState({ rrule, isCopied: false });
   };
 
   handleCopy = () => {
@@ -30,6 +30,7 @@ class App extends Component {
             value={this.state.rrule}
             config={{
               hideStart: false,
+              readOnlyStart: true,
             }}
           />
         </div>

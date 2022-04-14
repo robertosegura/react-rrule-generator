@@ -9,11 +9,12 @@ const Start = ({
     onDate,
   },
   handleChange,
+  readOnly,
 }) => {
   const classes = useStyles();
   return (
     <div className={classes.container}>
-      <StartOnDate id={id} onDate={onDate} handleChange={handleChange} />
+      <StartOnDate id={id} onDate={onDate} handleChange={handleChange} readOnly={readOnly} />
     </div>
   );
 };
@@ -24,6 +25,7 @@ Start.propTypes = {
     onDate: PropTypes.object.isRequired,
   }).isRequired,
   handleChange: PropTypes.func.isRequired,
+  readOnly: PropTypes.bool.isRequired,
 };
 
 export default Start;

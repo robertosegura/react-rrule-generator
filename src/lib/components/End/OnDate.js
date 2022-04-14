@@ -26,6 +26,7 @@ const EndOnDate = ({
           autoOk
           fullWidth
           variant="inline"
+          format="MM/dd/yyyy"
           margin="normal"
           label="End Date"
           style={{ marginTop: 0 }}

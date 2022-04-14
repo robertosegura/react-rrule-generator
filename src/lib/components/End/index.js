@@ -26,7 +26,7 @@ const End = ({
     <div className={classes.container}>
       <div className={classes.input}>
         <FormControl fullWidth>
-          <InputLabel id={`${id}-label`}>End Date</InputLabel>
+          <InputLabel id={`${id}-label`}>End</InputLabel>
           <Select
             id={id}
             labelId={`${id}-label`}

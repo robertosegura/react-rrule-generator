@@ -14,6 +14,7 @@ const StartOnDate = ({
     date,
   },
   handleChange,
+  readOnly,
 }) => {
   const classes = useStyles();
   return (
@@ -29,6 +30,7 @@ const StartOnDate = ({
           format="MM/dd/yyyy"
           margin="normal"
           label="Start Date"
+          disabled={readOnly}
           onChange={(inputDate) => {
             const editedEvent = {
               target: {
@@ -58,6 +60,7 @@ StartOnDate.propTypes = {
     }).isRequired,
   }).isRequired,
   handleChange: PropTypes.func.isRequired,
+  readOnly: PropTypes.bool.isRequired,
 };
 
 export default StartOnDate;
