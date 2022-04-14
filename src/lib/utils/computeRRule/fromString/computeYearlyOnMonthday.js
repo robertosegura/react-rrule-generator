@@ -4,7 +4,7 @@ const computeYearlyOnMonthday = (data, rruleObj) => {
   }
 
   if (typeof rruleObj.bymonthday === 'number') {
-    return rruleObj.bymonthday
+    return rruleObj.bymonthday;
   }
 
   return rruleObj.bymonthday[0];

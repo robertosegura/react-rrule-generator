@@ -1,4 +1,4 @@
-'use strict';
+
 
 // Do this as the first thing so that any code reading it knows the right env.
 process.env.BABEL_ENV = 'production';
@@ -7,7 +7,7 @@ process.env.NODE_ENV = 'production';
 // Makes the script crash on unhandled rejections instead of silently
 // ignoring them. In the future, promise rejections that are not handled will
 // terminate the Node.js process with a non-zero exit code.
-process.on('unhandledRejection', err => {
+process.on('unhandledRejection', (err) => {
   throw err;
 });
 
@@ -40,7 +40,7 @@ if (!checkRequiredFiles([paths.appLibIndexJs])) {
 // First, read the current file sizes in lib directory.
 // This lets us display how much they changed later.
 measureFileSizesBeforeBuild(paths.appBuildDemo)
-  .then(previousFileSizes => {
+  .then((previousFileSizes) => {
     // Remove all content but keep the directory so that
     // if you're in it, you don't end up in Trash
     fs.emptyDirSync(paths.appBuildDemo);
@@ -53,16 +53,12 @@ measureFileSizesBeforeBuild(paths.appBuildDemo)
       if (warnings.length) {
         console.log(chalk.yellow('Compiled with warnings.\n'));
         console.log(warnings.join('\n\n'));
-        console.log(
-          '\nSearch for the ' +
-          chalk.underline(chalk.yellow('keywords')) +
-          ' to learn more about each warning.'
-        );
-        console.log(
-          'To ignore, add ' +
-          chalk.cyan('// eslint-disable-next-line') +
-          ' to the line before.\n'
-        );
+        console.log(`\nSearch for the ${
+          chalk.underline(chalk.yellow('keywords'))
+        } to learn more about each warning.`);
+        console.log(`To ignore, add ${
+          chalk.cyan('// eslint-disable-next-line')
+        } to the line before.\n`);
       } else {
         console.log(chalk.green('Compiled successfully.\n'));
       }
@@ -73,22 +69,22 @@ measureFileSizesBeforeBuild(paths.appBuildDemo)
         previousFileSizes,
         paths.appBuildDemo,
         WARN_AFTER_BUNDLE_GZIP_SIZE,
-        WARN_AFTER_CHUNK_GZIP_SIZE
+        WARN_AFTER_CHUNK_GZIP_SIZE,
       );
       console.log();
     },
-    err => {
+    (err) => {
       console.log(chalk.red('Failed to compile.\n'));
       printBuildError(err);
       process.exit(1);
-    }
+    },
   );
 
 // Create the production build and print the deployment instructions.
 function build(previousFileSizes) {
   console.log('Creating an optimized production build...');
 
-  let compiler = webpack(config);
+  const compiler = webpack(config);
   return new Promise((resolve, reject) => {
     compiler.run((err, stats) => {
       if (err) {
@@ -109,12 +105,8 @@ function build(previousFileSizes) {
           process.env.CI.toLowerCase() !== 'false') &&
         messages.warnings.length
       ) {
-        console.log(
-          chalk.yellow(
-            '\nTreating warnings as errors because process.env.CI = true.\n' +
-            'Most CI servers set it automatically.\n'
-          )
-        );
+        console.log(chalk.yellow('\nTreating warnings as errors because process.env.CI = true.\n' +
+            'Most CI servers set it automatically.\n'));
         return reject(new Error(messages.warnings.join('\n\n')));
       }
       return resolve({
@@ -124,4 +116,4 @@ function build(previousFileSizes) {
       });
     });
   });
-}  
+}

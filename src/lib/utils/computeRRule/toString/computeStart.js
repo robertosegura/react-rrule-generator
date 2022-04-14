@@ -4,12 +4,13 @@ const computeStart = ({ onDate: { date } }) => {
   // verify that incoming date is valid
   // by seeing if it can be converted into a moment object.
   // if not, then create a new date
-  if (!moment.isMoment(moment(date))) {
-    date = new Date().setMilliseconds(0);
+  let newDate = date;
+  if (!moment.isMoment(moment(newDate))) {
+    newDate = new Date().setMilliseconds(0);
   }
 
   return {
-    dtstart: moment(date).toDate(),
+    dtstart: moment(newDate).toDate(),
   };
 };
 

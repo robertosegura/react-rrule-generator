@@ -67,7 +67,6 @@ class ReactRRuleGenerator extends PureComponent {
 
     return (
       <StylesProvider generateClassName={generateClassName}>
-        v1
         <div>
           {
           !options.hideError && error && (
